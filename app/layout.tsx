@@ -1,16 +1,15 @@
+import { JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+// components
+import Header from "@/components/Header";
+import PageTransitioin from "@/components/PageTransitioin";
+import StairTransition from "@/components/StairTransition";
+
+const jetBrains_Mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetBrainsMono",
 });
 
 export const metadata: Metadata = {
@@ -25,10 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${jetBrains_Mono.variable} font-mono`}>
+        <Header />
+        <StairTransition />
+        <PageTransitioin>{children}</PageTransitioin>
       </body>
     </html>
   );
