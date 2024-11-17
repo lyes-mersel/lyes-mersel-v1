@@ -20,10 +20,10 @@ const Photo = () => {
             opacity: 1,
             transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" },
           }}
-          className="w-[280px] h-[280px] xl:w-[475px] xl:h-[475px] absolute bottom-6 left-3 xl:left-5 xl:bottom-10 mix-blend-lighten filter brightness-90"
+          className="w-[300px] h-[300px] xl:w-[500px] xl:h-[500px] absolute mix-blend-lighten"
         >
           <Image
-            src={"/assets/photo.png"}
+            src={"/assets/profile_image.jpg"}
             priority
             quality={100}
             fill
@@ -34,9 +34,9 @@ const Photo = () => {
 
         {/* animation */}
         <motion.svg
-          className="w-[300px] h-[300px] xl:w-[506px] xl:h-[506px]"
+          className="w-[300px] h-[300px] xl:w-[500px] xl:h-[500px] relative z-10"
           fill="transparent"
-          viewBox="0 0 506 506"
+          viewBox="0 0 505 505"
           xmlns="https://www.w3.org/2000/svg"
         >
           <motion.circle
@@ -44,7 +44,7 @@ const Photo = () => {
             cy="253"
             r="250"
             stroke="#00ff99"
-            strokeWidth="4"
+            strokeWidth="6"
             strokeLinecap="round"
             strokeLinejoin="round"
             initial={{ strokeDasharray: "24 10 0 0" }}
@@ -66,4 +66,4 @@ const Photo = () => {
 
 export default Photo;
 
-//mix-blend-lighten
+// mix-blend-lighten
