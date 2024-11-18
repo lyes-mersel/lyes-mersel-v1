@@ -13,7 +13,7 @@ const Home = () => {
         <div className="flex flex-col xl:flex-row justify-between items-center xl:pt-8 xl:pb-24">
           {/* Text */}
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl">Full Stack Developer</span>
+            <span className="text-xl">Software Developer</span>
             <h1 className="mb-6">
               Hello I&apos;m <br />
               <span className="text-accent">Lyes Mersel</span>
