@@ -142,6 +142,7 @@ const Work = () => {
               </div>
             </div>
           </div>
+          {/* Swipers */}
           <div className="w-full xl:w-[50%]">
             <Swiper
               spaceBetween={30}
