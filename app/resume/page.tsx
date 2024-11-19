@@ -23,6 +23,7 @@ import {
   FaDocker,
   FaJava,
   FaPython,
+  FaServer,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -34,14 +35,20 @@ import {
   SiPostgresql,
   SiMongodb,
   SiC,
+  SiMui,
+  SiUml,
+  SiJquery,
+  SiPostman,
+  SiJsonwebtokens,
 } from "react-icons/si";
+import { TbBrandFramerMotion } from "react-icons/tb";
 
 // education data
 const education = {
   icon: "/assets/resume/cap.svg",
   title: "My Education",
   description:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis laboriosam pariatur voluptate neque?",
+    "I'm driven by a passion for learning. Here's a snapshot of my education:",
   items: [
     {
       institution: "High School",
@@ -66,22 +73,25 @@ const education = {
   ],
 };
 
-// experience data
 const experience = {
   icon: "/assets/resume/badge.svg",
   title: "My Experience",
-  description:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis laboriosam pariatur voluptate neque?",
+  description: "Here's a quick overview of my professional journey:",
   items: [
     {
-      company: "XYZ Company",
-      position: "ABC Position",
-      duration: "2019 - 2021",
+      company: "Freelance",
+      position: "Full Stack Developer",
+      duration: "08/2023 - Current",
     },
     {
-      company: "XYZ Company",
-      position: "ABC Position",
-      duration: "2019 - 2021",
+      company: "University of Bejaia",
+      position: "Web App - Hospital appointment system.",
+      duration: "02/2023 - 06/2023",
+    },
+    {
+      company: "ESI Algiers",
+      position: "Mobile App - Learning app for kids.",
+      duration: "02/2021 - 06/2021",
     },
   ],
 };
@@ -89,29 +99,41 @@ const experience = {
 // skills data
 const skills = {
   title: "My Skills",
-  description:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis laboriosam pariatur voluptate neque?",
-  items: [
+  description: "Here are the main technologies I’ve worked with on my journey.",
+  languages: [
+    { icon: <FaJs />, name: "JavaScript" },
+    { icon: <SiTypescript />, name: "TypeScript" },
+    { icon: <SiC />, name: "C" },
+    { icon: <FaJava />, name: "Java" },
+    { icon: <FaPython />, name: "Python" },
+  ],
+  front: [
+    { icon: <FaReact />, name: "React" },
+    { icon: <SiNextdotjs />, name: "Next.js" },
+    { icon: <SiTailwindcss />, name: "Tailwind CSS" },
+    { icon: <SiMui />, name: "Material UI" },
+    { icon: <TbBrandFramerMotion />, name: "Framer Motion" },
     { icon: <FaHtml5 />, name: "HTML5" },
     { icon: <FaCss3 />, name: "CSS3" },
     { icon: <FaBootstrap />, name: "Bootstrap" },
-    { icon: <SiTailwindcss />, name: "Tailwind CSS" },
-    { icon: <FaJs />, name: "JavaScript" },
-    { icon: <SiTypescript />, name: "TypeScript" },
-    { icon: <FaReact />, name: "React" },
-    { icon: <SiNextdotjs />, name: "Next.js" },
+    { icon: <SiJquery />, name: "jQuery" },
+  ],
+  back: [
     { icon: <FaNode />, name: "Node.js" },
     { icon: <SiExpress />, name: "Express.js" },
     { icon: <SiMysql />, name: "MySQL" },
     { icon: <SiOracle />, name: "Oracle" },
     { icon: <SiPostgresql />, name: "PostgreSQL" },
     { icon: <SiMongodb />, name: "MongoDB" },
-    { icon: <SiC />, name: "C" },
-    { icon: <FaJava />, name: "Java" },
-    { icon: <FaPython />, name: "Python" },
+    { icon: <FaServer />, name: "REST API" },
+    { icon: <SiJsonwebtokens />, name: "JWT" },
+  ],
+  others: [
     { icon: <FaGitAlt />, name: "Git" },
     { icon: <FaGithub />, name: "GitHub" },
     { icon: <FaDocker />, name: "Docker" },
+    { icon: <SiPostman />, name: "Postman" },
+    { icon: <SiUml />, name: "UML 2" },
   ],
 };
 
@@ -119,7 +141,7 @@ const skills = {
 const about = {
   title: "About me",
   description:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis laboriosam pariatur voluptate neque?",
+    "I'm a Software Developer with a passion for building web and software solutions.",
   info: [
     {
       filedName: "Name",
@@ -180,7 +202,7 @@ const Resume = () => {
             <TabsContent value="education" className="w-full">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
                 <h3 className="text-4xl font-bold">{education.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                <p className="max-w-[700px] text-white/60 mx-auto xl:mx-0">
                   {education.description}
                 </p>
                 <ScrollArea className="h-[400px]">
@@ -236,31 +258,111 @@ const Resume = () => {
 
             {/* skills */}
             <TabsContent value="skills" className="w-full h-full">
-              <div className="flex flex-col gap-[30px]">
-                <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                  <h3 className="text-4xl font-bold">{skills.title}</h3>
-                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                    {skills.description}
-                  </p>
-                  <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
-                    {skills.items.map((item, index) => (
-                      <li key={index} className="">
-                        <TooltipProvider delayDuration={100}>
-                          <Tooltip>
-                            <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
-                              <div className="text-6xl group-hover:text-accent transition-all duration-300">
-                                {item.icon}
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="capitalize">{item.name}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                <h3 className="text-4xl font-bold">{skills.title}</h3>
+                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                  {skills.description}
+                </p>
+                <Tabs defaultValue="languages">
+                  <TabsList className="flex w-full mb-5">
+                    <TabsTrigger value="languages">Languages</TabsTrigger>
+                    <TabsTrigger value="front">Front</TabsTrigger>
+                    <TabsTrigger value="back">Back</TabsTrigger>
+                    <TabsTrigger value="others">Others</TabsTrigger>
+                  </TabsList>
+                  {/* programming languages */}
+                  <TabsContent value="languages" className="min-h-0">
+                    <ScrollArea className="h-[330px]">
+                      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
+                        {skills.languages.map((item, index) => (
+                          <li key={index} className="">
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
+                                  <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                                    {item.icon}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="capitalize">{item.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </li>
+                        ))}
+                      </ul>
+                    </ScrollArea>
+                  </TabsContent>
+                  {/* frontend technologies */}
+                  <TabsContent value="front" className="min-h-0">
+                    <ScrollArea className="h-[330px]">
+                      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
+                        {skills.front.map((item, index) => (
+                          <li key={index} className="">
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
+                                  <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                                    {item.icon}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="capitalize">{item.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </li>
+                        ))}
+                      </ul>
+                    </ScrollArea>
+                  </TabsContent>
+                  {/* backend technologies */}
+                  <TabsContent value="back" className="min-h-0">
+                    <ScrollArea className="h-[330px]">
+                      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
+                        {skills.back.map((item, index) => (
+                          <li key={index} className="">
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
+                                  <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                                    {item.icon}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="capitalize">{item.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </li>
+                        ))}
+                      </ul>
+                    </ScrollArea>
+                  </TabsContent>
+                  {/* other technologies */}
+                  <TabsContent value="others" className="min-h-0">
+                    <ScrollArea className="h-[330px]">
+                      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
+                        {skills.others.map((item, index) => (
+                          <li key={index} className="">
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
+                                  <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                                    {item.icon}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="capitalize">{item.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </li>
+                        ))}
+                      </ul>
+                    </ScrollArea>
+                  </TabsContent>
+                </Tabs>
               </div>
             </TabsContent>
 

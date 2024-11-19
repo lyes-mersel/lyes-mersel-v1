@@ -8,13 +8,29 @@ const services = [
   {
     num: "01",
     title: "Web Development",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    description:
+      "Creating modern, high-performance websites that are visually engaging and functional.",
     href: "",
   },
   {
     num: "02",
-    title: "Mobile Development",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    title: "Custom Software Solutions",
+    description:
+      "Designing and developing tailored software that perfectly fits your business needs and processes.",
+    href: "",
+  },
+  {
+    num: "03",
+    title: "API Development & Integration",
+    description:
+      "Building secure and efficient APIs or integrating third-party services to extend functionality.",
+    href: "",
+  },
+  {
+    num: "04",
+    title: "Database Design & Optimization",
+    description:
+      "Designing scalable databases and optimizing queries for better performance and data management.",
     href: "",
   },
 ];
@@ -29,7 +45,7 @@ const Services = () => {
             opacity: 1,
             transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-[80px]"
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-[80px] gap-y-[50px]"
         >
           {services.map((service, index) => (
             <div

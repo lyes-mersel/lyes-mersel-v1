@@ -39,10 +39,13 @@ const Contact = () => {
           {/* form */}
           <div className="xl:w-[65%] order-2 xl:order-none">
             <form className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl items-end">
-              <h3 className="w-full text-4xl text-accent">Let&apos;s work together</h3>
+              <h3 className="w-full text-4xl text-accent">
+                Let’s Create Something Great Together
+              </h3>
               <p className="text-white/60">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-                pariatur cumque magni asperiores quos!
+                Have a project in mind or need help turning your ideas into
+                reality? I’m here to collaborate and bring your vision to life.
+                Reach out, and let’s get started!
               </p>
               {/* inputs */}
               <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
