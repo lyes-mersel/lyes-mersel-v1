@@ -26,6 +26,7 @@
     "framer-motion": "^11.11.13",
     "next": "15.0.3",
     "node-cache": "^5.1.2",
+    "nodemailer": "^6.9.16",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-countup": "^6.5.3",
     "react-dom": "19.0.0-rc-66855b96-20241106",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

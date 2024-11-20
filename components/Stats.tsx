@@ -30,13 +30,13 @@ const Stats = () => {
       try {
         const experience = calculateYearDifference("2023-08-01");
 
-        const projectsResponse = await fetch("/api/github-projects");
+        const projectsResponse = await fetch("/api/github/repositories");
         const { data: projects } = await projectsResponse.json();
 
-        const technologiesResponse = await fetch("/api/github-technologies");
+        const technologiesResponse = await fetch("/api/github/technologies");
         const { data: technologies } = await technologiesResponse.json();
 
-        const commitsResponse = await fetch("/api/github-commits");
+        const commitsResponse = await fetch("/api/github/commits");
         const { data: commits } = await commitsResponse.json();
 
         setStatsData({

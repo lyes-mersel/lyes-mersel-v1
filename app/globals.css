@@ -31,3 +31,17 @@
     -webkit-text-stroke: 1px #00ff99;
   }
 }
+
+@layer utilities {
+  .text-error {
+    @apply text-[#F56565];
+  }
+
+  .text-success {
+    @apply text-accent;
+  }
+
+  .border-error {
+    @apply border-[#F56565];
+  }
+}
