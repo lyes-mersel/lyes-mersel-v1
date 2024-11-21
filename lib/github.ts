@@ -34,7 +34,7 @@ const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
     return cached.data;
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 10));
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
   console.log(`Fetching data from GitHub API for "${cacheKey}"...`);
   const response = await fetch(`${GITHUB_API_URL}${endpoint}`, {
