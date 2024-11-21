@@ -16,8 +16,8 @@ export default {
         sm: "20px",
         md: "24px",
         lg: "32px",
-        xl: "40px",
-        xxl: "60px",
+        xl: "60px",
+        xxl: "80px",
       },
     },
     extend: {

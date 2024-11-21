@@ -85,7 +85,7 @@ const experience = {
     },
     {
       company: "University of Bejaia",
-      position: "Web App - Hospital appointment system.",
+      position: "Web App - Clinic appointment system.",
       duration: "02/2023 - 06/2023",
     },
     {
@@ -141,7 +141,7 @@ const skills = {
 const about = {
   title: "About me",
   description:
-    "I'm a Software Developer with a passion for building web and software solutions.",
+    "I'm a Software Developer passionate about building efficient and user-friendly web and software solutions. I enjoy solving problems, learning new technologies, and turning ideas into impactful applications.",
   info: [
     {
       filedName: "Name",
@@ -182,7 +182,7 @@ const Resume = () => {
         opacity: 1,
         transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
       }}
-      className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
+      className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0 xxl:pt-10"
     >
       <div className="container mx-auto">
         <Tabs
@@ -213,7 +213,7 @@ const Resume = () => {
                         className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
                       >
                         <span className="text-accent">{item.duration}</span>
-                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
+                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-normal xl:leading-none xxl:leading-normal">
                           {item.degree}
                         </h3>
                         <div className="flex items-center gap-3">
@@ -242,7 +242,7 @@ const Resume = () => {
                         className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
                       >
                         <span className="text-accent">{item.duration}</span>
-                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
+                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-normal xl:leading-none xxl:leading-normal">
                           {item.position}
                         </h3>
                         <div className="flex items-center gap-3">
@@ -373,10 +373,10 @@ const Resume = () => {
             >
               <div className="flex flex-col gap-[30px]">
                 <h3 className="text-4xl font-bold">{about.title}</h3>
-                <p className="max-w-[650px] text-white/60 mx-auto xl:mx-0">
+                <p className="max-w-[800px] text-white/60 mx-auto xl:mx-0">
                   {about.description}
                 </p>
-                <ul className="grid grid-cols-1 xl:grid-cols-2 max-w-[670px] mx-auto xl:mx-0">
+                <ul className="grid grid-cols-1 xl:grid-cols-2 max-w-[800px] mx-auto xl:mx-0">
                   {about.info.map((item, index) => (
                     <li
                       key={index}

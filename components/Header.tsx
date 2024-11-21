@@ -4,16 +4,21 @@ import Link from "next/link";
 import Nav from "./Nav";
 import { Button } from "./ui/button";
 import MobileNav from "./MobileNav";
+import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="py-8 xl:py-12 text-white">
+    <header className="py-4 text-white">
       <div className="container mx-auto flex justify-between items-center">
         {/* LOGO */}
         <Link href="/">
-          <h1 className="text-4xl font-semibold">
-            Lyes<span className="text-accent">.</span>
-          </h1>
+          <Image
+            src="/assets/icons/logo.png"
+            height={80}
+            width={80}
+            alt="Logo"
+            className="w-[60px] h-[60px] xl:w-[80px] xl:h-[80px]"
+          />
         </Link>
 
         {/* desktop nav and hire me button */}
