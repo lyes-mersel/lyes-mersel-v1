@@ -10,7 +10,7 @@ import NodeCache from "node-cache";
 const GITHUB_API_URL = "https://api.github.com";
 
 // Create a new cache instance with a default TTL of 24 hours
-const cache = new NodeCache({ stdTTL: 87000 });
+const cache = new NodeCache({ stdTTL: 3600 });
 
 /** Function to get GitHub token from environment variables */
 const getAuthToken = (): string => {
