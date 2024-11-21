@@ -1,12 +1,40 @@
-import { CommitActivity, Languages, Repository, UserData } from "./types";
+import {
+  CacheData,
+  CommitActivity,
+  Languages,
+  Repository,
+  UserData,
+} from "./types";
+import NodeCache from "node-cache";
 
 const GITHUB_API_URL = "https://api.github.com";
 
+const cache = new NodeCache({ stdTTL: 3600 });
+
+/** Function to get GitHub token from environment variables */
+const getAuthToken = (): string => {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) {
+    throw new Error(
+      "GitHub token is not defined in the environment variables."
+    );
+  }
+  return token;
+};
+
 /** Generic function to fetch data from GitHub API */
-export const fetchGithubData = async <T>(
-  endpoint: string,
-  token: string
-): Promise<T> => {
+const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
+  const token = getAuthToken();
+  const cacheKey = `${endpoint}`;
+
+  const cached = cache.get<CacheData<T>>(cacheKey);
+
+  if (cached) {
+    return cached.data;
+  }
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   const response = await fetch(`${GITHUB_API_URL}${endpoint}`, {
     headers: {
       Authorization: `token ${token}`,
@@ -19,34 +47,54 @@ export const fetchGithubData = async <T>(
     );
   }
 
-  return response.json() as T;
+  const data = (await response.json()) as T;
+  cache.set(cacheKey, { data });
+
+  return data;
+};
+
+/** Function to refresh cache every hour automatically */
+const startAutomaticDataFetch = () => {
+  console.log("Starting automatic data refresh every hour...");
+
+  setInterval(async () => {
+    try {
+      console.log("Refreshing data...");
+      await getTotalRepositories();
+      await getTotalTechnologies();
+      await getTotalCommits();
+
+      console.log("Data refreshed successfully!");
+    } catch (error) {
+      console.error("Error refreshing data:", error);
+    }
+  }, 3600000); // 3600000ms = 1 hour
+};
+
+/** Helper function to fetch repositories of a user */
+const getUserRepositories = async (): Promise<Repository[]> => {
+  return await fetchGithubData<Repository[]>(
+    `/users/${process.env.GITHUB_USERNAME!}/repos`
+  );
 };
 
 /** Fetch the total number of repositories for the authenticated user */
 export const getTotalRepositories = async (): Promise<number> => {
-  const token = process.env.GITHUB_TOKEN!;
-  const userData = await fetchGithubData<UserData>("/user", token);
+  const userData = await fetchGithubData<UserData>("/user");
   return userData.public_repos;
 };
 
 /** Fetch the total number of unique technologies used across all repositories */
 export const getTotalTechnologies = async (): Promise<number> => {
-  const username = process.env.GITHUB_USERNAME!;
-  const token = process.env.GITHUB_TOKEN!;
+  const repos = await getUserRepositories();
   const uniqueTechnologies = new Set<string>();
-
-  const repos = await fetchGithubData<Repository[]>(
-    `/users/${username}/repos`,
-    token
-  );
 
   for (const repo of repos) {
     const repoName = repo.name;
 
     try {
       const languages = await fetchGithubData<Languages>(
-        `/repos/${username}/${repoName}/languages`,
-        token
+        `/repos/${process.env.GITHUB_USERNAME!}/${repoName}/languages`
       );
 
       Object.keys(languages).forEach((technology) =>
@@ -65,29 +113,27 @@ export const getTotalTechnologies = async (): Promise<number> => {
 
 /** Fetch the total number of commits across all repositories */
 export const getTotalCommits = async (): Promise<number> => {
-  const username = process.env.GITHUB_USERNAME!;
-  const token = process.env.GITHUB_TOKEN!;
+  const repos = await getUserRepositories();
   let totalCommits = 0;
-
-  const repos = await fetchGithubData<Repository[]>(
-    `/users/${username}/repos`,
-    token
-  );
 
   for (const repo of repos) {
     const repoName = repo.name;
 
     try {
-      const commitActivity = await fetchGithubData<CommitActivity[]>(
-        `/repos/${username}/${repoName}/stats/commit_activity`,
-        token
+      const commitActivity = await fetchGithubData<CommitActivity[] | object>(
+        `/repos/${process.env
+          .GITHUB_USERNAME!}/${repoName}/stats/commit_activity`
       );
 
-      const yearlyCommits = commitActivity.reduce(
-        (sum, week) => sum + week.total,
-        0
-      );
-      totalCommits += yearlyCommits;
+      if (Array.isArray(commitActivity)) {
+        const yearlyCommits = commitActivity.reduce(
+          (sum, week) => sum + week.total,
+          0
+        );
+        totalCommits += yearlyCommits;
+      } else {
+        console.log(`No commit data for repo "${repoName}"`);
+      }
     } catch (error) {
       console.error(`Failed to fetch commits for repo "${repoName}":`, error);
     }
@@ -95,3 +141,5 @@ export const getTotalCommits = async (): Promise<number> => {
 
   return totalCommits;
 };
+
+startAutomaticDataFetch();

@@ -1,18 +1,9 @@
-import NodeCache from "node-cache";
 import { NextResponse } from "next/server";
 import { getTotalTechnologies } from "@/lib/github";
 
-const cache = new NodeCache({ stdTTL: 3600 });
-
 export async function GET() {
   try {
-    const cacheKey = "totalTechnologies";
-    let data = cache.get(cacheKey);
-
-    if (!data) {
-      data = await getTotalTechnologies();
-      cache.set(cacheKey, data);
-    }
+    const data = await getTotalTechnologies();
 
     const headers = {
       "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",

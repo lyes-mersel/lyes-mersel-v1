@@ -1,3 +1,7 @@
+export interface CacheData<T> {
+  data: T;
+}
+
 export interface StatsDataT {
   experience: number;
   projects: number;
