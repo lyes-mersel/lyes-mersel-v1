@@ -125,23 +125,3 @@ export const getTotalCommits = async (): Promise<number> => {
 
   return totalCommits;
 };
-
-/** Function to refresh cache every hour automatically */
-const startAutomaticDataFetch = () => {
-  console.log("Starting automatic data refresh every hour...");
-
-  setInterval(async () => {
-    try {
-      console.log("Refreshing data...");
-      await getTotalRepositories();
-      await getTotalTechnologies();
-      await getTotalCommits();
-
-      console.log("Data refreshed successfully!");
-    } catch (error) {
-      console.error("Error refreshing data:", error);
-    }
-  }, 60000); // 3600000ms = 1 hour
-};
-
-startAutomaticDataFetch();
