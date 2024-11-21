@@ -9,7 +9,7 @@ import NodeCache from "node-cache";
 
 const GITHUB_API_URL = "https://api.github.com";
 
-const cache = new NodeCache({ stdTTL: 3600 });
+const cache = new NodeCache({ stdTTL: 60 });
 
 /** Function to get GitHub token from environment variables */
 const getAuthToken = (): string => {
@@ -30,11 +30,13 @@ const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
   const cached = cache.get<CacheData<T>>(cacheKey);
 
   if (cached) {
+    console.log(`Returning cached data for "${cacheKey}"...`);
     return cached.data;
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
+  console.log(`Fetching data from GitHub API for "${cacheKey}"...`);
   const response = await fetch(`${GITHUB_API_URL}${endpoint}`, {
     headers: {
       Authorization: `token ${token}`,
@@ -51,24 +53,6 @@ const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
   cache.set(cacheKey, { data });
 
   return data;
-};
-
-/** Function to refresh cache every hour automatically */
-const startAutomaticDataFetch = () => {
-  console.log("Starting automatic data refresh every hour...");
-
-  setInterval(async () => {
-    try {
-      console.log("Refreshing data...");
-      await getTotalRepositories();
-      await getTotalTechnologies();
-      await getTotalCommits();
-
-      console.log("Data refreshed successfully!");
-    } catch (error) {
-      console.error("Error refreshing data:", error);
-    }
-  }, 3600000); // 3600000ms = 1 hour
 };
 
 /** Helper function to fetch repositories of a user */
@@ -140,6 +124,24 @@ export const getTotalCommits = async (): Promise<number> => {
   }
 
   return totalCommits;
+};
+
+/** Function to refresh cache every hour automatically */
+const startAutomaticDataFetch = () => {
+  console.log("Starting automatic data refresh every hour...");
+
+  setInterval(async () => {
+    try {
+      console.log("Refreshing data...");
+      await getTotalRepositories();
+      await getTotalTechnologies();
+      await getTotalCommits();
+
+      console.log("Data refreshed successfully!");
+    } catch (error) {
+      console.error("Error refreshing data:", error);
+    }
+  }, 60000); // 3600000ms = 1 hour
 };
 
 startAutomaticDataFetch();

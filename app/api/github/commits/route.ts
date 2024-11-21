@@ -6,7 +6,7 @@ export async function GET() {
     const data = await getTotalCommits();
 
     const headers = {
-      "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",
+      // "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",
     };
     return NextResponse.json({ data }, { status: 200, headers });
   } catch (error) {
