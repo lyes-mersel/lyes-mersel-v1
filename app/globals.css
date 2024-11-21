@@ -37,10 +37,6 @@
     @apply text-[#F56565];
   }
 
-  .text-success {
-    @apply text-accent;
-  }
-
   .border-error {
     @apply border-[#F56565];
   }

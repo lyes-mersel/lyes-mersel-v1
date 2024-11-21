@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Photo = () => {
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative mb-5 xl:mb-0">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{
@@ -23,9 +23,10 @@ const Photo = () => {
           className="w-[300px] h-[300px] xl:w-[500px] xl:h-[500px] absolute mix-blend-lighten"
         >
           <Image
-            src={"/assets/images/profile_image.jpg"}
+            src={"/assets/images/profile-image.jpg"}
             priority
             quality={100}
+            sizes="(min-width: 1200px) 500px, 300px"
             fill
             alt="Portrait of Lyes MERSEL, a software engineering student and full stack developer."
             className="object-contain"

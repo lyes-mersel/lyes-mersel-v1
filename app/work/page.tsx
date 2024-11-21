@@ -25,47 +25,106 @@ const projects = [
   {
     num: "01",
     category: "Web",
-    title: "Project 1",
+    title: "Shifa",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt tempora obcaecati necessitatibus.",
-    stack: [{ name: "HTML 5" }, { name: "Css 3" }, { name: "JavaScript" }],
-    image: "/assets/images/placeholder.jpg",
+      "A comprehensive reservation system for medical clinics, enabling patients to easily book appointments, manage schedules, and receive notifications.",
+    stack: [
+      { name: "JS" },
+      { name: "Express.js" },
+      { name: "EJS" },
+      { name: "MySQL" },
+    ],
+    image: "/assets/images/shifa.png",
     live: "",
-    github: "",
+    github: "https://github.com/lyes-mersel/shifa",
   },
   {
     num: "02",
     category: "Web",
-    title: "Project 2",
+    title: "inTech Blogs",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt tempora obcaecati necessitatibus.",
-
-    stack: [{ name: "HTML 5" }, { name: "Css 3" }, { name: "JavaScript" }],
-    image: "/assets/images/placeholder.jpg",
-    live: "",
-    github: "",
+      "A dynamic blogging platform tailored for tech enthusiasts, featuring user authentication, CMS integration, and a sleek, responsive design.",
+    stack: [
+      { name: "TS" },
+      { name: "Next.js" },
+      { name: "NextAuth" },
+      { name: "SanityCMS" },
+      { name: "TailwindCSS" },
+    ],
+    image: "/assets/images/intech-blogs.png",
+    live: "https://intech-blogs.vercel.app",
+    github: "https://github.com/lyes-mersel/intech-blogs",
   },
   {
     num: "03",
-    category: "Web",
-    title: "Project 3",
+    category: "Mobile",
+    title: "Edutainment",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt tempora obcaecati necessitatibus.",
-    stack: [{ name: "HTML 5" }, { name: "Css 3" }, { name: "JavaScript" }],
-    image: "/assets/images/placeholder.jpg",
+      "An interactive mobile app designed to make learning fun and engaging for children, offering educational games, quizzes, and progress tracking.",
+    stack: [{ name: "Dart" }, { name: "Flutter" }, { name: "Firebase" }],
+    image: "/assets/images/edutainment.png",
     live: "",
-    github: "",
+    github: "https://github.com/lyes-mersel/edutainment",
   },
   {
     num: "04",
-    category: "Web",
-    title: "Project 4",
+    category: "Desktop",
+    title: "Polynomial Master",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt tempora obcaecati necessitatibus.",
-    stack: [{ name: "HTML 5" }, { name: "Css 3" }, { name: "JavaScript" }],
-    image: "/assets/images/placeholder.jpg",
+      "A robust C-based desktop application for advanced polynomial manipulation, including arithmetic operations, graph plotting, and CRC computations, built with a focus on performance and usability.",
+    stack: [
+      { name: "C" },
+      { name: "SDL2" },
+      { name: "Cmake" },
+      { name: "Docker" },
+    ],
+    image: "/assets/images/polynomial-master.png",
     live: "",
-    github: "",
+    github: "https://github.com/lyes-mersel/polynomial-master",
+  },
+  {
+    num: "05",
+    category: "Web",
+    title: "Country Navigator",
+    description:
+      "A responsive React app that allows users to explore detailed information about countries worldwide, including demographics, geography, and cultural insights, powered by the REST Countries API.",
+    stack: [{ name: "JS" }, { name: "React" }, { name: "MUI" }],
+    image: "/assets/images/country-navigator.png",
+    live: "https://countrynavigator.vercel.app/",
+    github: "https://github.com/lyes-mersel/country-navigator",
+  },
+  {
+    num: "06",
+    category: "Web",
+    title: "Buddy Workout",
+    description:
+      "A full-stack web application for fitness enthusiasts, enabling users to create, customize, and manage workout routines with secure authentication and a user-friendly interface.",
+    stack: [
+      { name: "JS" },
+      { name: "React" },
+      { name: "Express.js" },
+      { name: "MongoDB" },
+      { name: "JWT" },
+    ],
+    image: "/assets/images/buddy-workout.png",
+    live: "https://tuto-workout.onrender.com",
+    github: "https://github.com/lyes-mersel/tuto-workout",
+  },
+  {
+    num: "07",
+    category: "Web",
+    title: "My Portfolio",
+    description:
+      "A visually captivating and interactive personal portfolio website to showcase my projects, skills, and experience, featuring smooth animations and responsive design.",
+    stack: [
+      { name: "TS" },
+      { name: "Next.js" },
+      { name: "TailwindCSS" },
+      { name: "Framer Motion" },
+    ],
+    image: "/assets/images/lyes-mersel-v1.png",
+    live: "/",
+    github: "https://github.com/lyes-mersel/lyes-mersel-v1",
   },
 ];
 
@@ -88,20 +147,24 @@ const Work = () => {
     >
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-          <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
-            <div className="flex flex-col gap-[30px] h-[50%]">
+          <div className="w-full xl:w-[50%] order-2 xl:order-none">
+            <div className="flex flex-col gap-[30px] xl:min-h-[460px] xl:justify-between">
               {/* outline num */}
               <span className="text-8xl leading-none font-extrabold text-transparent text-outline">
                 {project.num}
               </span>
               {/* project category */}
-              <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
+              <h3 className=" text-4xl font-bold leading-none text-transparent text-outline transition-all duration-500 uppercase">
                 {project.category} project
+              </h3>
+              {/* project title */}
+              <h2 className="text-5xl font-bold leading-none text-white hover:text-accent transition-all duration-500 cursor-pointer">
+                {project.title}
               </h2>
               {/* project description */}
               <p className="text-white/60">{project.description}</p>
               {/* stack */}
-              <ul className="flex gap-4">
+              <ul className="flex gap-4 flex-wrap">
                 {project.stack.map((item, index) => (
                   <li key={index} className="text-xl text-accent">
                     {item.name}
@@ -111,14 +174,20 @@ const Work = () => {
               </ul>
               {/* border */}
               <div className="border border-white/20"></div>
-              {/* buttons */}
-              <div className="flex items-center gap-4">
-                {/* live project  */}
-                <Link href={project.live}>
+            </div>
+            {/* buttons */}
+            <div className="flex items-center gap-4 mt-2">
+              {/* live project  */}
+              {project.live !== "" && (
+                <Link
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger className="w-[60px] h-[60px] rounded-full bg-white/5 flex justify-center items-center group">
-                        <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                        <BsArrowUpRight className="text-white text-3xl hover:text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>Live Project</p>
@@ -126,12 +195,18 @@ const Work = () => {
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
-                {/* github project */}
-                <Link href={project.github}>
+              )}
+              {/* github project */}
+              {project.github !== "" && (
+                <Link
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger className="w-[60px] h-[60px] rounded-full bg-white/5 flex justify-center items-center group">
-                        <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                        <BsGithub className="text-white text-3xl hover:text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>GitHub Repository</p>
@@ -139,7 +214,7 @@ const Work = () => {
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
-              </div>
+              )}
             </div>
           </div>
           {/* Swipers */}
@@ -147,19 +222,19 @@ const Work = () => {
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
-              className="xl:h-[520px] mb-12"
+              className="xl:h-[520px] mb-10 xl:mb-0"
               onSlideChange={handleSlideChange}
             >
               {projects.map((project, index) => (
                 <SwiperSlide key={index} className="w-full">
-                  <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/50">
+                  <div className="h-[350px] sm:h-[460px] max-w-[590px] mx-auto relative group flex justify-center items-center bg-pink-50/50">
                     {/* overlay */}
-                    <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
+                    <div className="absolute top-0 bottom-0 w-full h-full bg-primary"></div>
                     {/* image */}
                     <Image
                       src={project.image}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       alt=""
                     />
                   </div>

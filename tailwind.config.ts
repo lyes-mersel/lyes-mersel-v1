@@ -11,7 +11,14 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "15px",
+      padding: {
+        DEFAULT: "16px",
+        sm: "20px",
+        md: "24px",
+        lg: "32px",
+        xl: "40px",
+        xxl: "60px",
+      },
     },
     extend: {
       screens: {
@@ -19,6 +26,8 @@ export default {
         md: "768px",
         lg: "960px",
         xl: "1200px",
+        xxl: "1440px",
+        xxxl: "1600px",
       },
       fontFamily: {
         jetBrainsMono: "var(--font-jetBrainsMono)",

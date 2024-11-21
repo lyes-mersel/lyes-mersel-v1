@@ -1,9 +1,17 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { CiMenuFries } from "react-icons/ci";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { name: "home", path: "/" },
@@ -20,7 +28,18 @@ const MobileNav = () => {
       <SheetTrigger className="flex justify-center items-center">
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
+
       <SheetContent className="flex flex-col">
+        {/* For screen readers */}
+        <VisuallyHidden>
+          <SheetTitle>
+            <VisuallyHidden>Mobile Navigation</VisuallyHidden>
+          </SheetTitle>
+          <SheetDescription>
+            This is the mobile navigation menu.
+          </SheetDescription>
+        </VisuallyHidden>
+
         <div className="mt-32 mb-40 text-center text-2xl">
           <Link href="/">
             <h1 className="text-4xl font-semibold">
@@ -28,6 +47,7 @@ const MobileNav = () => {
             </h1>
           </Link>
         </div>
+
         <div className="flex flex-col justify-center items-center gap-8">
           {links.map((link, index) => (
             <Link
