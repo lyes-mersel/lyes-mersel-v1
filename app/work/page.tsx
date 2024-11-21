@@ -218,7 +218,7 @@ const Work = () => {
             </div>
           </div>
           {/* Swipers */}
-          <div className="w-full xl:w-[50%]">
+          <div className="max-w-[590px] mx-auto">
             <Swiper
               spaceBetween={30}
               slidesPerView={1}

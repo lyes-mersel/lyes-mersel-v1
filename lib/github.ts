@@ -9,7 +9,8 @@ import NodeCache from "node-cache";
 
 const GITHUB_API_URL = "https://api.github.com";
 
-const cache = new NodeCache({ stdTTL: 60 });
+// Create a new cache instance with a default TTL of 24 hours
+const cache = new NodeCache({ stdTTL: 87000 });
 
 /** Function to get GitHub token from environment variables */
 const getAuthToken = (): string => {
@@ -124,4 +125,20 @@ export const getTotalCommits = async (): Promise<number> => {
   }
 
   return totalCommits;
+};
+
+/** Function to refresh the cache data by fetching the latest data from GitHub API */
+export const refreshCasheData = async () => {
+  try {
+    cache.flushAll();
+    console.log("Cache cleared...Refreshing data...");
+
+    await getTotalRepositories();
+    await getTotalTechnologies();
+    await getTotalCommits();
+
+    console.log("Data refreshed successfully!");
+  } catch (error) {
+    console.error("Error refreshing cash data:", error);
+  }
 };

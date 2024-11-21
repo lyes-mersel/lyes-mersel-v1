@@ -8,6 +8,7 @@ import { StatsDataT } from "@/lib/types";
 import { calculateYearDifference } from "@/lib/utils";
 
 const Stats = () => {
+  const [loading, setLoading] = useState(true);
   const [statsData, setStatsData] = useState<StatsDataT>({
     experience: 0,
     projects: 0,
@@ -29,15 +30,15 @@ const Stats = () => {
     const fetchStatsData = async () => {
       try {
         const experience = calculateYearDifference("2023-08-01");
+        const [projectsRes, technologiesRes, commitsRes] = await Promise.all([
+          fetch("/api/github/repositories"),
+          fetch("/api/github/technologies"),
+          fetch("/api/github/commits"),
+        ]);
 
-        const projectsResponse = await fetch("/api/github/repositories");
-        const { data: projects } = await projectsResponse.json();
-
-        const technologiesResponse = await fetch("/api/github/technologies");
-        const { data: technologies } = await technologiesResponse.json();
-
-        const commitsResponse = await fetch("/api/github/commits");
-        const { data: commits } = await commitsResponse.json();
+        const projects = (await projectsRes.json()).data;
+        const technologies = (await technologiesRes.json()).data;
+        const commits = (await commitsRes.json()).data;
 
         setStatsData({
           experience,
@@ -47,6 +48,8 @@ const Stats = () => {
         });
       } catch (error) {
         console.error("Error fetching stats data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -62,12 +65,16 @@ const Stats = () => {
               key={index}
               className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
             >
-              <CountUp
-                end={statsData[item.name]}
-                duration={5}
-                delay={2}
-                className="text-4xl xl:text-6xl font-extrabold"
-              />
+              {!loading && (
+                <CountUp
+                  key={item.name}
+                  end={statsData[item.name]}
+                  duration={5}
+                  delay={1}
+                  className="text-4xl xl:text-6xl font-extrabold"
+                />
+              )}
+
               <span className={`${item.text.includes(" ") && "max-w-[100px]"}`}>
                 {item.text}
               </span>
