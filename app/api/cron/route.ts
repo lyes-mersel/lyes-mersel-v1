@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { refreshCasheData } from "@/lib/github";
+import { refreshCacheData } from "@/lib/github";
 
 export async function GET() {
   try {
-    await refreshCasheData();
+    await refreshCacheData();
+    console.log("Cron job executed at", new Date().toISOString());
     return NextResponse.json(
-      { message: "Cache refreshed successfully" },
+      { message: "Cron job completed : Cache refreshed successfully" },
       { status: 200 }
     );
   } catch (error) {

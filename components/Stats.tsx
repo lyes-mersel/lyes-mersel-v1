@@ -60,12 +60,12 @@ const Stats = () => {
     <section className="pt-4 pb-12 xl:pt-0 xl:pb-0">
       <div className="container mx-auto flex justify-center xl:justify-start">
         <div className="flex flex-wrap gap-2 sm:gap-6 max-w-[80vw] xl:max-w-none">
-          {stats.map((item, index) => (
-            <div
-              key={index}
-              className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
-            >
-              {!loading && (
+          {!loading &&
+            stats.map((item, index) => (
+              <div
+                key={index}
+                className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
+              >
                 <CountUp
                   key={item.name}
                   end={statsData[item.name]}
@@ -73,13 +73,13 @@ const Stats = () => {
                   delay={1}
                   className="text-4xl xl:text-6xl font-extrabold"
                 />
-              )}
-
-              <span className={`${item.text.includes(" ") && "max-w-[100px]"}`}>
-                {item.text}
-              </span>
-            </div>
-          ))}
+                <span
+                  className={`${item.text.includes(" ") && "max-w-[100px]"}`}
+                >
+                  {item.text}
+                </span>
+              </div>
+            ))}
         </div>
       </div>
     </section>

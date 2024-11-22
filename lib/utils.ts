@@ -5,6 +5,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const validateEnvVar = (name: string): string => {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Environment variable "${name}" is not defined.`);
+  }
+  return value;
+};
+
 /**
  * Calculate the difference in years between the current date and a given date.
  * @param {Date | string} givenDate - The date to compare with the current date.
