@@ -1,5 +1,5 @@
 {
-  "regions": ["eu-central-1"],
+  "regions": ["fra1"],
   "crons": [
     {
       "path": "/api/cron",
