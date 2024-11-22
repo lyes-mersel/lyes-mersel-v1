@@ -21,6 +21,25 @@ const getAuthToken = (): string => {
   return token;
 };
 
+/* Retry function with exponential backoff to handle network connection errors */
+const retry = async <T>(
+  fn: () => Promise<T>,
+  retries = 10,
+  delay = 10,
+  maxDelay = 1000
+): Promise<T> => {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retries <= 0) throw error;
+
+    const nextDelay = Math.min(delay * 2, maxDelay);
+    await new Promise((resolve) => setTimeout(resolve, nextDelay));
+
+    return retry(fn, retries - 1, nextDelay, maxDelay);
+  }
+};
+
 /** Function to fetch data from cache */
 const getOrSetCache = async <T>(
   key: string,
@@ -55,25 +74,6 @@ const getOrSetCache = async <T>(
     return freshData;
   } catch (error) {
     throw new Error(`Cache error for key ${key}: ${error}`);
-  }
-};
-
-/* Retry function with exponential backoff to handle network connection errors */
-const retry = async <T>(
-  fn: () => Promise<T>,
-  retries = 10,
-  delay = 10,
-  maxDelay = 1000
-): Promise<T> => {
-  try {
-    return await fn();
-  } catch (error) {
-    if (retries <= 0) throw error;
-
-    const nextDelay = Math.min(delay * 2, maxDelay);
-    await new Promise((resolve) => setTimeout(resolve, nextDelay));
-
-    return retry(fn, retries - 1, nextDelay, maxDelay);
   }
 };
 
