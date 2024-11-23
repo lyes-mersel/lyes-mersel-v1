@@ -12,6 +12,8 @@ validateEnvVar("EMAIL_USER");
 validateEnvVar("EMAIL_PASSWORD");
 validateEnvVar("MY_EMAIL_ADDRESS");
 
+validateEnvVar("CRON_SECRET");
+
 const nextConfig: NextConfig = {
   // Enable React Strict Mode for development
   reactStrictMode: true,
