@@ -1,7 +1,7 @@
 import { Redis } from "@upstash/redis";
 import { CommitActivity, Languages, Repository, UserData } from "./types";
 
-const DEFAULT_EXPIRATION = 3600;
+const DEFAULT_EXPIRATION = 25 * 60 * 60; // 25 hours
 const GITHUB_API_URL = "https://api.github.com";
 
 // Create a new Redis client and connect
@@ -24,9 +24,9 @@ const getAuthToken = (): string => {
 /* Retry function with exponential backoff to handle network connection errors */
 const retry = async <T>(
   fn: () => Promise<T>,
-  retries = 10,
+  retries = 8,
   delay = 10,
-  maxDelay = 1000
+  maxDelay = 500
 ): Promise<T> => {
   try {
     return await fn();
@@ -52,8 +52,6 @@ const getOrSetCache = async <T>(
         const data = (await redisClient.get(key)) as string | null;
         return data;
       },
-      5,
-      10
     );
 
     if (cachedData) {
@@ -66,8 +64,6 @@ const getOrSetCache = async <T>(
       async () => {
         await redisClient.setex(key, expiration, JSON.stringify(freshData));
       },
-      5,
-      10
     );
 
     console.log(`Cache miss for key: ${key}`);

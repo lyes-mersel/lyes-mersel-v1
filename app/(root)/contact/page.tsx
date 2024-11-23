@@ -189,10 +189,12 @@ const Contact = () => {
                 className={`h-[200px] ${errors.message && "border-error"}`}
               />
               {/* Submit Btn & message */}
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row justify-between items-center">
                 {status.ok !== 0 ? (
                   <p
-                    className={status.ok === 200 ? "text-accent" : "text-error"}
+                    className={`mb-4 sm:mb-0 ${
+                      status.ok === 200 ? "text-accent" : "text-error"
+                    }`}
                   >
                     {status.message}
                   </p>

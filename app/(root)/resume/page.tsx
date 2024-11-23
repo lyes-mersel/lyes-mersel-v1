@@ -45,6 +45,7 @@ import { DiRedis } from "react-icons/di";
 import { TbBrandFramerMotion } from "react-icons/tb";
 import Image from "next/image";
 import { useState } from "react";
+import { calculateYearDifference } from "@/lib/utils";
 
 // education data
 const education = {
@@ -153,7 +154,11 @@ const about = {
     },
     {
       filedName: "Experience",
-      fieldValue: "+1 Year",
+      fieldValue: (() => {
+        // calculate and display the experience in years
+        const value = calculateYearDifference("2023-08-01");
+        return value > 1 ? `+${value} Years` : `+${value} Year`;
+      })(),
     },
     {
       filedName: "Email",
@@ -432,7 +437,9 @@ const Resume = () => {
                       }`}
                     >
                       <span className="text-white/60">{item.filedName}</span>
-                      <span className="text-base lg:text-lg">{item.fieldValue}</span>
+                      <span className="text-base lg:text-lg">
+                        {item.fieldValue}
+                      </span>
                     </li>
                   ))}
                 </ul>
