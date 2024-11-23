@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       );
     }
 
-    sendEmailContactForm({
+    await sendEmailContactForm({
       firstName,
       lastName,
       email,
