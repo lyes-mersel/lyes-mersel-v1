@@ -1,14 +1,10 @@
-import { Redis } from "@upstash/redis";
-import { CommitActivity, Languages, Repository, UserData } from "./types";
+import { redisClient } from "./redisClient";
+import { sendEmailCacheAndRateLimit } from "./sendEmails";
+import { CommitActivity, Languages, Repository, UserData } from "../types";
 
-const DEFAULT_EXPIRATION = 3600;
+// constants
 const GITHUB_API_URL = "https://api.github.com";
-
-// Create a new Redis client and connect
-const redisClient = new Redis({
-  url: process.env.REDIS_URL,
-  token: process.env.REDIS_TOKEN,
-});
+const REDIS_DEFAULT_EXPIRATION = 25 * 60 * 60;
 
 /** Function to get GitHub token from environment variables */
 const getAuthToken = (): string => {
@@ -24,9 +20,9 @@ const getAuthToken = (): string => {
 /* Retry function with exponential backoff to handle network connection errors */
 const retry = async <T>(
   fn: () => Promise<T>,
-  retries = 10,
+  retries = 8,
   delay = 10,
-  maxDelay = 1000
+  maxDelay = 500
 ): Promise<T> => {
   try {
     return await fn();
@@ -44,17 +40,13 @@ const retry = async <T>(
 const getOrSetCache = async <T>(
   key: string,
   fetchFunction: () => Promise<T>,
-  expiration = DEFAULT_EXPIRATION
+  expiration = REDIS_DEFAULT_EXPIRATION
 ): Promise<T> => {
   try {
-    const cachedData = await retry(
-      async () => {
-        const data = (await redisClient.get(key)) as string | null;
-        return data;
-      },
-      5,
-      10
-    );
+    const cachedData = await retry(async () => {
+      const data = (await redisClient.get(key)) as string | null;
+      return data;
+    });
 
     if (cachedData) {
       console.log(`Cache hit for key: ${key}`);
@@ -62,13 +54,9 @@ const getOrSetCache = async <T>(
     }
 
     const freshData = await fetchFunction();
-    await retry(
-      async () => {
-        await redisClient.setex(key, expiration, JSON.stringify(freshData));
-      },
-      5,
-      10
-    );
+    await retry(async () => {
+      await redisClient.setex(key, expiration, JSON.stringify(freshData));
+    });
 
     console.log(`Cache miss for key: ${key}`);
     return freshData;
@@ -78,7 +66,7 @@ const getOrSetCache = async <T>(
 };
 
 /** Generic function to fetch data from GitHub API */
-const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
+export const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
   const token = getAuthToken();
   return retry(async () => {
     const response = await fetch(`${GITHUB_API_URL}${endpoint}`, {
@@ -196,19 +184,6 @@ export const getTotalCommits = async (): Promise<number> => {
   }
 };
 
-/* check my rate limit status */
-const checkRateLimit = async () => {
-  const data = await fetchGithubData<{
-    rate: { limit: number; used: number; remaining: number; reset: number };
-  }>("/rate_limit");
-
-  console.log(
-    `\n\nRate limit: ${data.rate.remaining}/${data.rate.limit} remaining, ` +
-      `Used: ${data.rate.used}, ` +
-      `Resets at ${new Date(data.rate.reset * 1000).toLocaleTimeString()}\n`
-  );
-};
-
 /** Function to refresh the cache data by fetching the latest data from GitHub API */
 export const refreshCacheData = async () => {
   try {
@@ -221,8 +196,8 @@ export const refreshCacheData = async () => {
       getTotalCommits(),
     ]);
     console.log("Cache data refreshed successfully!");
-
-    await checkRateLimit();
+    
+    await sendEmailCacheAndRateLimit();
   } catch (error) {
     console.error("Error refreshing cache data:", error);
   }

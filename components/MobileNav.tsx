@@ -5,6 +5,7 @@ import {
   SheetContent,
   SheetTrigger,
   SheetTitle,
+  SheetHeader,
   SheetDescription,
 } from "@/components/ui/sheet";
 import { CiMenuFries } from "react-icons/ci";
@@ -33,17 +34,19 @@ const MobileNav = () => {
       <SheetContent className="flex flex-col">
         {/* For screen readers */}
         <VisuallyHidden>
-          <SheetTitle>
-            <VisuallyHidden>Mobile Navigation</VisuallyHidden>
-          </SheetTitle>
-          <SheetDescription>
-            This is the mobile navigation menu.
-          </SheetDescription>
+          <SheetHeader>
+            <SheetTitle>
+              <VisuallyHidden>Mobile Navigation</VisuallyHidden>
+            </SheetTitle>
+            <SheetDescription>
+              This is the mobile navigation menu.
+            </SheetDescription>
+          </SheetHeader>
         </VisuallyHidden>
 
         <Link href="/">
           <Image
-            src="/assets/icons/logo.png"
+            src="/icons/logo.png"
             height={80}
             width={80}
             alt="Logo"
@@ -51,7 +54,7 @@ const MobileNav = () => {
           />
         </Link>
 
-        <div className="flex flex-col justify-center items-center gap-8">
+        <nav className="flex flex-col justify-center items-center gap-8">
           {links.map((link, index) => (
             <Link
               key={index}
@@ -63,7 +66,7 @@ const MobileNav = () => {
               {link.name}
             </Link>
           ))}
-        </div>
+        </nav>
       </SheetContent>
     </Sheet>
   );

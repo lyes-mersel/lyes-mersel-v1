@@ -132,7 +132,7 @@ const Contact = () => {
               <h3 className="w-full text-4xl text-accent">
                 Let’s Create Something Great Together
               </h3>
-              <p className="text-white/60">
+              <p className="text-white/60 text-left xs:text-justify">
                 Have a project in mind or need help turning your ideas into
                 reality? I’m here to collaborate and bring your vision to life.
                 Reach out, and let’s get started!
@@ -189,10 +189,12 @@ const Contact = () => {
                 className={`h-[200px] ${errors.message && "border-error"}`}
               />
               {/* Submit Btn & message */}
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row justify-between items-center">
                 {status.ok !== 0 ? (
                   <p
-                    className={status.ok === 200 ? "text-accent" : "text-error"}
+                    className={`mb-4 sm:mb-0 ${
+                      status.ok === 200 ? "text-accent" : "text-error"
+                    }`}
                   >
                     {status.message}
                   </p>

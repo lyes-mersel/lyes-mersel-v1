@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { getTotalTechnologies } from "@/lib/github";
+import { getTotalTechnologies } from "@/lib/api/fetchData";
 
 export async function GET() {
   try {
     const data = await getTotalTechnologies();
 
     const headers = {
-      // "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",
+      "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",
     };
     return NextResponse.json({ data }, { status: 200, headers });
   } catch (error) {
