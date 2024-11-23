@@ -14,6 +14,7 @@ const Header = () => {
         <Link href="/">
           <Image
             src="/icons/logo.png"
+            priority
             height={80}
             width={80}
             alt="Logo"

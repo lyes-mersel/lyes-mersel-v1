@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getTotalRepositories } from "@/lib/github";
+import { getTotalRepositories } from "@/lib/api/fetchData";
 
 export async function GET() {
   try {

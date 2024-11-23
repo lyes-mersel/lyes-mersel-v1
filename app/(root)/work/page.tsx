@@ -235,6 +235,7 @@ const Work = () => {
                     <Image
                       src={project.image}
                       fill
+                      sizes="(max-width: 639px) 100vw, 590px"
                       className="object-contain"
                       alt=""
                     />

@@ -12,7 +12,7 @@ export interface StatsDataT {
 export interface Repository {
   id: number;
   name: string;
-  private: boolean;
+  // private: boolean;
 }
 
 export interface UserData {
@@ -27,4 +27,13 @@ export interface CommitActivity {
 
 export interface Languages {
   [language: string]: number;
+}
+
+export interface ContactFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { refreshCacheData } from "@/lib/github";
+import { refreshCacheData } from "@/lib/api/fetchData";
 
 export async function GET() {
   try {

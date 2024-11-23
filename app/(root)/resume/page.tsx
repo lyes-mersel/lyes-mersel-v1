@@ -240,7 +240,7 @@ const Resume = () => {
                 height={32}
                 width={32}
                 alt=""
-                src={`/icons/skills${
+                src={`/icons/about-me${
                   activeTab === "about" ? "-black" : "-white"
                 }.png`}
               />

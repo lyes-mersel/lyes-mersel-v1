@@ -10,6 +10,7 @@ import { createMetadata } from "@/lib/utils";
 const jetBrains_Mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetBrainsMono",
+  preload: false,
 });
 
 export const metadata = createMetadata();
