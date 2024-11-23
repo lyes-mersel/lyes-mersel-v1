@@ -34,7 +34,7 @@ const projects = [
       { name: "EJS" },
       { name: "MySQL" },
     ],
-    image: "/assets/images/shifa.png",
+    image: "/images/projects/shifa.png",
     live: "",
     github: "https://github.com/lyes-mersel/shifa",
   },
@@ -51,7 +51,7 @@ const projects = [
       { name: "SanityCMS" },
       { name: "TailwindCSS" },
     ],
-    image: "/assets/images/intech-blogs.png",
+    image: "/images/projects/intech-blogs.png",
     live: "https://intech-blogs.vercel.app",
     github: "https://github.com/lyes-mersel/intech-blogs",
   },
@@ -62,7 +62,7 @@ const projects = [
     description:
       "An interactive mobile app designed to make learning fun and engaging for children, offering educational games, quizzes, and progress tracking.",
     stack: [{ name: "Dart" }, { name: "Flutter" }, { name: "Firebase" }],
-    image: "/assets/images/edutainment.png",
+    image: "/images/projects/edutainment.png",
     live: "",
     github: "https://github.com/lyes-mersel/edutainment",
   },
@@ -78,7 +78,7 @@ const projects = [
       { name: "Cmake" },
       { name: "Docker" },
     ],
-    image: "/assets/images/polynomial-master.png",
+    image: "/images/projects/polynomial-master.png",
     live: "",
     github: "https://github.com/lyes-mersel/polynomial-master",
   },
@@ -89,7 +89,7 @@ const projects = [
     description:
       "A responsive React app that allows users to explore detailed information about countries worldwide, including demographics, geography, and cultural insights, powered by the REST Countries API.",
     stack: [{ name: "JS" }, { name: "React" }, { name: "MUI" }],
-    image: "/assets/images/country-navigator.png",
+    image: "/images/projects/country-navigator.png",
     live: "https://countrynavigator.vercel.app/",
     github: "https://github.com/lyes-mersel/country-navigator",
   },
@@ -106,7 +106,7 @@ const projects = [
       { name: "MongoDB" },
       { name: "JWT" },
     ],
-    image: "/assets/images/buddy-workout.png",
+    image: "/images/projects/buddy-workout.png",
     live: "https://tuto-workout.onrender.com",
     github: "https://github.com/lyes-mersel/tuto-workout",
   },
@@ -122,7 +122,7 @@ const projects = [
       { name: "TailwindCSS" },
       { name: "Framer Motion" },
     ],
-    image: "/assets/images/lyes-mersel-v1.png",
+    image: "/images/projects/lyes-mersel-v1.png",
     live: "/",
     github: "https://github.com/lyes-mersel/lyes-mersel-v1",
   },
@@ -218,7 +218,7 @@ const Work = () => {
             </div>
           </div>
           {/* Swipers */}
-          <div className="max-w-[590px] mx-auto">
+          <div className="w-full max-w-[590px] mx-auto">
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
@@ -227,7 +227,7 @@ const Work = () => {
             >
               {projects.map((project, index) => (
                 <SwiperSlide key={index} className="w-full">
-                  <div className="h-[350px] sm:h-[460px] max-w-[590px] mx-auto relative group flex justify-center items-center bg-pink-50/50">
+                  <div className="h-[200px] xxs:h-[250px] xs:h-[350px] sm:h-[460px] max-w-[590px] mx-auto relative group flex justify-center items-center bg-pink-50/50">
                     {/* overlay */}
                     <div className="absolute top-0 bottom-0 w-full h-full bg-primary"></div>
                     {/* image */}

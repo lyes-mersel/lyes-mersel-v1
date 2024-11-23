@@ -12,7 +12,9 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: "16px",
+        DEFAULT: "10px",
+        xxs: "12px",
+        xs: "16px",
         sm: "20px",
         md: "24px",
         lg: "32px",
@@ -22,6 +24,8 @@ export default {
     },
     extend: {
       screens: {
+        xxs: "320px",
+        xs: "480px",
         sm: "640px",
         md: "768px",
         lg: "960px",
