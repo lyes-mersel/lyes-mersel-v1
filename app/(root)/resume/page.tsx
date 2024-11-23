@@ -41,7 +41,10 @@ import {
   SiPostman,
   SiJsonwebtokens,
 } from "react-icons/si";
+import { DiRedis } from "react-icons/di";
 import { TbBrandFramerMotion } from "react-icons/tb";
+import Image from "next/image";
+import { useState } from "react";
 
 // education data
 const education = {
@@ -125,6 +128,7 @@ const skills = {
     { icon: <SiOracle />, name: "Oracle" },
     { icon: <SiPostgresql />, name: "PostgreSQL" },
     { icon: <SiMongodb />, name: "MongoDB" },
+    { icon: <DiRedis />, name: "Redis" },
     { icon: <FaServer />, name: "REST API" },
     { icon: <SiJsonwebtokens />, name: "JWT" },
   ],
@@ -175,6 +179,8 @@ const about = {
 };
 
 const Resume = () => {
+  const [activeTab, setActiveTab] = useState("education");
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -188,12 +194,53 @@ const Resume = () => {
         <Tabs
           defaultValue="education"
           className="flex flex-col xl:flex-row gap-[60px]"
+          onValueChange={(value) => setActiveTab(value)}
         >
           <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0">
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="about">About me</TabsTrigger>
+            <TabsTrigger value="education">
+              <Image
+                height={32}
+                width={32}
+                alt=""
+                src={`/icons/education${
+                  activeTab === "education" ? "-black" : "-white"
+                }.png`}
+              />
+              <span className="w-[90px] text-left">Education</span>
+            </TabsTrigger>
+            <TabsTrigger value="experience">
+              <Image
+                height={32}
+                width={32}
+                alt=""
+                src={`/icons/experience${
+                  activeTab === "experience" ? "-black" : "-white"
+                }.png`}
+              />
+              <span className="w-[90px] text-left">Education</span>
+            </TabsTrigger>
+            <TabsTrigger value="skills">
+              <Image
+                height={32}
+                width={32}
+                alt=""
+                src={`/icons/skills${
+                  activeTab === "skills" ? "-black" : "-white"
+                }.png`}
+              />
+              <span className="w-[90px] text-left">Skills</span>
+            </TabsTrigger>
+            <TabsTrigger value="about">
+              <Image
+                height={32}
+                width={32}
+                alt=""
+                src={`/icons/skills${
+                  activeTab === "about" ? "-black" : "-white"
+                }.png`}
+              />
+              <span className="w-[90px] text-left">About me</span>
+            </TabsTrigger>
           </TabsList>
 
           {/* content */}
@@ -213,7 +260,7 @@ const Resume = () => {
                         className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
                       >
                         <span className="text-accent">{item.duration}</span>
-                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-normal xl:leading-none xxl:leading-normal">
+                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
                           {item.degree}
                         </h3>
                         <div className="flex items-center gap-3">
@@ -242,7 +289,7 @@ const Resume = () => {
                         className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
                       >
                         <span className="text-accent">{item.duration}</span>
-                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-normal xl:leading-none xxl:leading-normal">
+                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
                           {item.position}
                         </h3>
                         <div className="flex items-center gap-3">
@@ -264,7 +311,7 @@ const Resume = () => {
                   {skills.description}
                 </p>
                 <Tabs defaultValue="languages">
-                  <TabsList className="flex w-full mb-5">
+                  <TabsList className="flex w-full mb-5 flex-wrap xs:flex-nowrap">
                     <TabsTrigger value="languages">Languages</TabsTrigger>
                     <TabsTrigger value="front">Front</TabsTrigger>
                     <TabsTrigger value="back">Back</TabsTrigger>
@@ -373,19 +420,19 @@ const Resume = () => {
             >
               <div className="flex flex-col gap-[30px]">
                 <h3 className="text-4xl font-bold">{about.title}</h3>
-                <p className="max-w-[800px] text-white/60 mx-auto xl:mx-0">
+                <p className="max-w-[800px] text-white/60 mx-auto xl:mx-0 text-justify xs:text-center">
                   {about.description}
                 </p>
-                <ul className="grid grid-cols-1 xl:grid-cols-2 max-w-[800px] mx-auto xl:mx-0">
+                <ul className="grid grid-cols-1 xl:grid-cols-2 max-w-[800px] mx-auto xl:mx-0 text-left">
                   {about.info.map((item, index) => (
                     <li
                       key={index}
-                      className={`flex items-center justify-center xl:justify-start gap-4 ${
+                      className={`flex justify-start xs:justify-center xl:justify-start gap-4 ${
                         item.filedName === "Languages" ? "xl:col-span-2" : ""
                       }`}
                     >
                       <span className="text-white/60">{item.filedName}</span>
-                      <span className="text-lg">{item.fieldValue}</span>
+                      <span className="text-base lg:text-lg">{item.fieldValue}</span>
                     </li>
                   ))}
                 </ul>

@@ -121,6 +121,7 @@ const projects = [
       { name: "Next.js" },
       { name: "TailwindCSS" },
       { name: "Framer Motion" },
+      { name: "Redis" },
     ],
     image: "/images/projects/lyes-mersel-v1.png",
     live: "/",

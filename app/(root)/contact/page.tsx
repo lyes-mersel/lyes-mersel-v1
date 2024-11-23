@@ -132,7 +132,7 @@ const Contact = () => {
               <h3 className="w-full text-4xl text-accent">
                 Let’s Create Something Great Together
               </h3>
-              <p className="text-white/60">
+              <p className="text-white/60 text-left xs:text-justify">
                 Have a project in mind or need help turning your ideas into
                 reality? I’m here to collaborate and bring your vision to life.
                 Reach out, and let’s get started!
