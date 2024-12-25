@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import CountUp from "react-countup";
+import { motion } from "framer-motion";
 
 // Types & Fuctions
 import { StatsDataT } from "@/lib/types";
@@ -59,7 +60,14 @@ const Stats = () => {
   return (
     <section className="pt-4 pb-12 xl:pt-0 xl:pb-0">
       <div className="container mx-auto flex justify-center xl:justify-start">
-        <div className="flex flex-wrap gap-2 sm:gap-6 max-w-[80vw] xl:max-w-none">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition: { delay: 2, duration: 0.4, ease: "easeIn" },
+          }}
+          className="flex flex-wrap gap-2 sm:gap-6 max-w-[80vw] xl:max-w-none"
+        >
           {!loading &&
             stats.map((item, index) => (
               <div
@@ -70,7 +78,7 @@ const Stats = () => {
                   key={item.name}
                   end={statsData[item.name]}
                   duration={5}
-                  delay={1}
+                  delay={2}
                   className="text-4xl xl:text-6xl font-extrabold"
                 />
                 <span
@@ -80,7 +88,7 @@ const Stats = () => {
                 </span>
               </div>
             ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
