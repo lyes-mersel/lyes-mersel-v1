@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 // components
 import Socials from "@/components/Socials";
@@ -10,7 +13,14 @@ const Home = () => {
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
-        <div className="flex flex-col xl:flex-row justify-between items-center xl:py-8 xxl:pb-10 xxxl:pb-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition: { delay: 2, duration: 0.4, ease: "easeIn" },
+          }}
+          className="flex flex-col xl:flex-row justify-between items-center xl:py-8 xxl:pb-10 xxxl:pb-20"
+        >
           {/* Text */}
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Software Developer</span>
@@ -46,7 +56,7 @@ const Home = () => {
           <div>
             <Photo />
           </div>
-        </div>
+        </motion.div>
       </div>
       <Stats />
     </section>

@@ -4,7 +4,6 @@ import { CommitActivity, Languages, Repository, UserData } from "../types";
 
 // constants
 const GITHUB_API_URL = "https://api.github.com";
-const REDIS_DEFAULT_EXPIRATION = 25 * 60 * 60;
 
 /** Function to get GitHub token from environment variables */
 const getAuthToken = (): string => {
@@ -18,9 +17,9 @@ const getAuthToken = (): string => {
 };
 
 /* Retry function with exponential backoff to handle network connection errors */
-const retry = async <T>(
+export const retry = async <T>(
   fn: () => Promise<T>,
-  retries = 8,
+  retries = 15,
   delay = 10,
   maxDelay = 500
 ): Promise<T> => {
@@ -39,8 +38,7 @@ const retry = async <T>(
 /** Function to fetch data from cache */
 const getOrSetCache = async <T>(
   key: string,
-  fetchFunction: () => Promise<T>,
-  expiration = REDIS_DEFAULT_EXPIRATION
+  fetchFunction: () => Promise<T>
 ): Promise<T> => {
   try {
     const cachedData = await retry(async () => {
@@ -55,7 +53,7 @@ const getOrSetCache = async <T>(
 
     const freshData = await fetchFunction();
     await retry(async () => {
-      await redisClient.setex(key, expiration, JSON.stringify(freshData));
+      await redisClient.set(key, JSON.stringify(freshData));
     });
 
     console.log(`Cache miss for key: ${key}`);
@@ -185,19 +183,30 @@ export const getTotalCommits = async (): Promise<number> => {
 };
 
 /** Function to refresh the cache data by fetching the latest data from GitHub API */
-export const refreshCacheData = async () => {
+export const refreshCacheData = async (prop: string) => {
   try {
-    await redisClient.flushall();
-    console.log("Cache cleared...Refreshing data...");
+    const keys =
+      prop === "A"
+        ? ["totalRepositories", "totalTechnologies"]
+        : ["totalCommits"];
+    await redisClient.del(...keys);
+    console.log(`Cache ${prop} cleared...Refreshing data...`);
 
-    await Promise.all([
-      getTotalRepositories(),
-      getTotalTechnologies(),
-      getTotalCommits(),
-    ]);
-    console.log("Cache data refreshed successfully!");
-    
-    await sendEmailCacheAndRateLimit();
+    switch (prop) {
+      case "A":
+        await Promise.all([getTotalRepositories(), getTotalTechnologies()]);
+        break;
+
+      case "B":
+        await getTotalCommits();
+        break;
+
+      default:
+        break;
+    }
+    console.log(`Cache ${prop} data refreshed successfully!`);
+
+    await sendEmailCacheAndRateLimit(prop);
   } catch (error) {
     console.error("Error refreshing cache data:", error);
   }

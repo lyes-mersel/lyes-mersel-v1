@@ -66,12 +66,12 @@ const education = {
     },
     {
       institution: "University of Bejaia",
-      degree: "Bachelor Degreee in Computer Science",
+      degree: "Bachelor's Degreee in Computer Science",
       duration: "2021 - 2024",
     },
     {
       institution: "University of Bejaia",
-      degree: "Master Degreee in Software Engineering",
+      degree: "Master's Degreee in Software Engineering",
       duration: "2024 - 2026",
     },
   ],
@@ -85,7 +85,12 @@ const experience = {
     {
       company: "Freelance",
       position: "Full Stack Developer",
-      duration: "08/2023 - Current",
+      duration: "08/2024 - Current",
+    },
+    {
+      company: "Cevital",
+      position: "Information System Intern",
+      duration: "07/2024 - 08/2024",
     },
     {
       company: "University of Bejaia",
@@ -146,7 +151,7 @@ const skills = {
 const about = {
   title: "About me",
   description:
-    "I'm a Software Developer passionate about building efficient and user-friendly web and software solutions. I enjoy solving problems, learning new technologies, and turning ideas into impactful applications.",
+    "I’m a Software Developer pursuing a Master's in Software Engineering at the University of Bejaia. Passionate about web development and cloud technologies, I focus on building scalable solutions and contributing to impactful projects.",
   info: [
     {
       filedName: "Name",
@@ -222,7 +227,7 @@ const Resume = () => {
                   activeTab === "experience" ? "-black" : "-white"
                 }.png`}
               />
-              <span className="w-[90px] text-left">Education</span>
+              <span className="w-[90px] text-left">Experience</span>
             </TabsTrigger>
             <TabsTrigger value="skills">
               <Image

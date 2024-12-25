@@ -68,22 +68,26 @@ export const sendEmailContactForm = async (formData: ContactFormData) => {
 };
 
 /** Function to send email about cache refresh and GitHub rate limit status */
-export const sendEmailCacheAndRateLimit = async () => {
+export const sendEmailCacheAndRateLimit = async (prop: string) => {
   try {
     const rateLimitData = await fetchGithubData<{
       rate: { limit: number; used: number; remaining: number; reset: number };
     }>("/rate_limit");
 
-    const emailContent = `
-    <h2>Cache Refreshed & GitHub Rate Limit Status</h2>
+    let emailContent = `
+    <h2>Cache ${prop} Refreshed & GitHub Rate Limit Status</h2>
 
     <h3>Cache Refreshed Details:</h3>
     <p>The following cache data has been refreshed:</p>
-      <ul>
-        <li>Total Repositories</li>
-        <li>Total Technologies</li>
-        <li>Total Commits</li>
-      </ul>
+      <ul>`;
+
+    emailContent +=
+      prop === "A"
+        ? `<li>Total Repositories</li>
+        <li>Total Technologies</li>`
+        : `<li>Total Commits</li>`;
+
+    emailContent += `</ul>
     <hr style="margin: 20px 0 30px; max-width: 500px; border: 1px solid #000;">
 
     <h3>GitHub Rate Limit Status:</h3>
