@@ -1,6 +1,6 @@
 import { redisClient } from "./redisClient";
 import { sendEmailCacheAndRateLimit } from "./sendEmails";
-import { CommitActivity, Languages, Repository, UserData } from "../types";
+import { Languages, Repository } from "../types";
 
 // constants
 const GITHUB_API_URL = "https://api.github.com";
@@ -87,13 +87,22 @@ export const fetchGithubData = async <T>(endpoint: string): Promise<T> => {
   });
 };
 
-/** Fetch the total number of repositories for the authenticated user */
+/** Fetch the total number of public repositories owned by the authenticated user (excluding forks) */
 export const getTotalRepositories = async (): Promise<number> => {
   try {
     const totalRepositories = await getOrSetCache(
       "totalRepositories",
       async () => {
-        return (await fetchGithubData<UserData>("/user")).public_repos;
+        const repos = await fetchGithubData<Repository[]>(
+          `/users/${process.env.GITHUB_USERNAME!}/repos?per_page=100`
+        );
+
+        const originalRepos = repos.filter(
+          (repo) =>
+            !repo.fork && repo.owner.login === process.env.GITHUB_USERNAME
+        );
+
+        return originalRepos.length;
       }
     );
     return totalRepositories;
@@ -111,9 +120,10 @@ export const getTotalTechnologies = async (): Promise<number> => {
         const repos = await fetchGithubData<Repository[]>(
           `/users/${process.env.GITHUB_USERNAME!}/repos`
         );
+        const ownedRepos = repos.filter((repo) => !repo.fork);
         const uniqueTechnologies = new Set<string>();
 
-        for (const repo of repos) {
+        for (const repo of ownedRepos) {
           const repoName = repo.name;
 
           try {
@@ -141,31 +151,43 @@ export const getTotalTechnologies = async (): Promise<number> => {
   }
 };
 
-/** Fetch the total number of commits across all repositories */
 export const getTotalCommits = async (): Promise<number> => {
   try {
     const totalCommits = await getOrSetCache("totalCommits", async () => {
       const repos = await fetchGithubData<Repository[]>(
         `/users/${process.env.GITHUB_USERNAME!}/repos`
       );
-      let totalCommits = 0;
+      const ownedRepos = repos.filter((repo) => !repo.fork);
 
-      for (const repo of repos) {
+      let totalCommits = 0;
+      for (const repo of ownedRepos) {
         const repoName = repo.name;
 
         try {
-          const commitActivity = await fetchGithubData<CommitActivity[]>(
-            `/repos/${process.env
-              .GITHUB_USERNAME!}/${repoName}/stats/commit_activity`
-          );
+          let page = 1;
+          let commitsCount = 0;
+          let commitsPage;
 
-          if (Array.isArray(commitActivity)) {
-            const yearlyCommits = commitActivity.reduce(
-              (sum, week) => sum + week.total,
-              0
+          do {
+            commitsPage = await fetchGithubData<
+              {
+                sha: string;
+                commit: {
+                  author: { name: string; date: string };
+                  message: string;
+                };
+              }[]
+            >(
+              `/repos/${process.env
+                .GITHUB_USERNAME!}/${repoName}/commits?author=${process.env
+                .GITHUB_USERNAME!}&per_page=100&page=${page}`
             );
-            totalCommits += yearlyCommits;
-          }
+
+            commitsCount += commitsPage.length;
+            page++;
+          } while (commitsPage.length === 100);
+
+          totalCommits += commitsCount;
         } catch (error) {
           console.error(
             `Failed to fetch commits for repo "${repoName}":`,
@@ -176,6 +198,7 @@ export const getTotalCommits = async (): Promise<number> => {
 
       return totalCommits;
     });
+
     return totalCommits;
   } catch (error) {
     throw new Error(`Error in getTotalCommits: ${error}`);

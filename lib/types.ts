@@ -10,9 +10,11 @@ export interface StatsDataT {
 }
 
 export interface Repository {
-  id: number;
   name: string;
-  // private: boolean;
+  fork: boolean;
+  owner: {
+    login: string;
+  };
 }
 
 export interface UserData {
