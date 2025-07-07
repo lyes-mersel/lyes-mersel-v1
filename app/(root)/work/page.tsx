@@ -25,6 +25,26 @@ const projects = [
   {
     num: "01",
     category: "Web",
+    title: "MEGA SHOP",
+    description:
+      "A comprehensive e-commerce platform featuring a multi-vendor marketplace, chatbot support, order tracking, advanced analytics, and full customer, vendor, and admin management.",
+    stack: [
+      { name: "TS" },
+      { name: "Next.js" },
+      { name: "TailwindCSS" },
+      { name: "Redux" },
+      { name: "Prisma" },
+      { name: "PostgreSQL" },
+      { name: "Cloudinary" },
+      { name: "Supabase" },
+    ],
+    image: "/images/projects/megashop.png",
+    live: "https://project-megashop.vercel.app",
+    github: "https://github.com/lyes-mersel/megashop",
+  },
+  {
+    num: "02",
+    category: "Web",
     title: "Shifa",
     description:
       "A comprehensive reservation system for medical clinics, enabling patients to easily book appointments, manage schedules, and receive notifications.",
@@ -39,7 +59,7 @@ const projects = [
     github: "https://github.com/lyes-mersel/shifa",
   },
   {
-    num: "02",
+    num: "03",
     category: "Web",
     title: "inTech Blogs",
     description:
@@ -56,7 +76,7 @@ const projects = [
     github: "https://github.com/lyes-mersel/intech-blogs",
   },
   {
-    num: "03",
+    num: "04",
     category: "Mobile",
     title: "Edutainment",
     description:
@@ -67,7 +87,7 @@ const projects = [
     github: "https://github.com/lyes-mersel/edutainment",
   },
   {
-    num: "04",
+    num: "05",
     category: "Desktop",
     title: "Polynomial Master",
     description:
@@ -83,7 +103,7 @@ const projects = [
     github: "https://github.com/lyes-mersel/polynomial-master",
   },
   {
-    num: "05",
+    num: "06",
     category: "Web",
     title: "Country Navigator",
     description:
@@ -94,7 +114,7 @@ const projects = [
     github: "https://github.com/lyes-mersel/country-navigator",
   },
   {
-    num: "06",
+    num: "07",
     category: "Web",
     title: "Buddy Workout",
     description:
@@ -111,7 +131,7 @@ const projects = [
     github: "https://github.com/lyes-mersel/tuto-workout",
   },
   {
-    num: "07",
+    num: "08",
     category: "Web",
     title: "My Portfolio",
     description:
