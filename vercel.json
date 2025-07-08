@@ -5,5 +5,11 @@
       "path": "/api/cron",
       "schedule": "0 5 * * *"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_BASE_URL": "https://lyes-mersel.vercel.app",
+      "NEXT_PUBLIC_API_URL": "https://lyes-mersel.vercel.app/api"
+    }
+  }
 }

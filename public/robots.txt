@@ -1,0 +1,5 @@
+# robots.txt for Lyes Mersel Portfolio
+User-agent: *
+Allow: /
+
+Sitemap: https://lyes-mersel.vercel.app/sitemap.xml
