@@ -36,12 +36,15 @@ const Home = () => {
             {/* donwload CV && social links */}
             <div className="flex flex-col xl:flex-row gap items-center gap-8">
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="uppercase flex items-center gap-2"
               >
-                Download CV
-                <FiDownload className="text-xl" />
+                <a href="/files/CV - Lyes Mersel.pdf" download>
+                  Download CV
+                  <FiDownload className="text-xl" />
+                </a>
               </Button>
               <div className="mb-8 xl:mb-0">
                 <Socials
