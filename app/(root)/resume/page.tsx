@@ -40,6 +40,7 @@ import {
   SiJquery,
   SiPostman,
   SiJsonwebtokens,
+  SiNestjs,
 } from "react-icons/si";
 import { DiRedis } from "react-icons/di";
 import { TbBrandFramerMotion } from "react-icons/tb";
@@ -55,14 +56,9 @@ const education = {
     "I'm driven by a passion for learning. Here's a snapshot of my education:",
   items: [
     {
-      institution: "High School",
-      degree: "Mathematics track Baccalaureate",
-      duration: "2019",
-    },
-    {
-      institution: "ESI Algiers",
-      degree: "Preparatory Classes",
-      duration: "2019 - 2021",
+      institution: "University of Bejaia",
+      degree: "Master's Degreee in Software Engineering",
+      duration: "2024 - 2026",
     },
     {
       institution: "University of Bejaia",
@@ -70,9 +66,14 @@ const education = {
       duration: "2021 - 2024",
     },
     {
-      institution: "University of Bejaia",
-      degree: "Master's Degreee in Software Engineering",
-      duration: "2024 - 2026",
+      institution: "ESI Algiers",
+      degree: "Preparatory Classes",
+      duration: "2019 - 2021",
+    },
+    {
+      institution: "High School",
+      degree: "Mathematics track Baccalaureate",
+      duration: "2019",
     },
   ],
 };
@@ -88,19 +89,14 @@ const experience = {
       duration: "08/2024 - Current",
     },
     {
-      company: "Cevital",
+      company: "Al Maha - Kuwait",
+      position: " Software Engineer Intern – Backend",
+      duration: "06/2025 - 08/2025",
+    },
+    {
+      company: "Cevital - Bejaia",
       position: "Information System Intern",
       duration: "07/2024 - 08/2024",
-    },
-    {
-      company: "University of Bejaia",
-      position: "Web App - Clinic appointment system.",
-      duration: "02/2023 - 06/2023",
-    },
-    {
-      company: "ESI Algiers",
-      position: "Mobile App - Learning app for kids.",
-      duration: "02/2021 - 06/2021",
     },
   ],
 };
@@ -130,6 +126,7 @@ const skills = {
   back: [
     { icon: <FaNode />, name: "Node.js" },
     { icon: <SiExpress />, name: "Express.js" },
+    { icon: <SiNestjs />, name: "NestJS" },
     { icon: <SiMysql />, name: "MySQL" },
     { icon: <SiOracle />, name: "Oracle" },
     { icon: <SiPostgresql />, name: "PostgreSQL" },
@@ -202,22 +199,11 @@ const Resume = () => {
     >
       <div className="container mx-auto">
         <Tabs
-          defaultValue="education"
+          defaultValue="experience"
           className="flex flex-col xl:flex-row gap-[60px]"
           onValueChange={(value) => setActiveTab(value)}
         >
           <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0">
-            <TabsTrigger value="education">
-              <Image
-                height={32}
-                width={32}
-                alt=""
-                src={`/icons/education${
-                  activeTab === "education" ? "-black" : "-white"
-                }.png`}
-              />
-              <span className="w-[90px] text-left">Education</span>
-            </TabsTrigger>
             <TabsTrigger value="experience">
               <Image
                 height={32}
@@ -228,6 +214,17 @@ const Resume = () => {
                 }.png`}
               />
               <span className="w-[90px] text-left">Experience</span>
+            </TabsTrigger>
+            <TabsTrigger value="education">
+              <Image
+                height={32}
+                width={32}
+                alt=""
+                src={`/icons/education${
+                  activeTab === "education" ? "-black" : "-white"
+                }.png`}
+              />
+              <span className="w-[90px] text-left">Education</span>
             </TabsTrigger>
             <TabsTrigger value="skills">
               <Image
