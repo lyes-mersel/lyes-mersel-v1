@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jetBrains_Mono.variable} font-mono`}>
+        <Analytics />
         <Header />
         {children}
       </body>
