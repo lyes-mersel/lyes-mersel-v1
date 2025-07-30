@@ -89,7 +89,7 @@ const experience = {
       duration: "08/2024 - Current",
     },
     {
-      company: "Al Maha - Kuwait",
+      company: "Eastern Al-Maha - Kuwait",
       position: " Software Engineer Intern – Backend",
       duration: "06/2025 - 08/2025",
     },
@@ -186,7 +186,7 @@ const about = {
 };
 
 const Resume = () => {
-  const [activeTab, setActiveTab] = useState("education");
+  const [activeTab, setActiveTab] = useState("experience");
 
   return (
     <motion.div
@@ -299,9 +299,9 @@ const Resume = () => {
                         <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
                           {item.position}
                         </h3>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 mt-2">
                           <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                          <p>{item.company}</p>
+                          <p className="leading-none">{item.company}</p>
                         </div>
                       </li>
                     ))}
