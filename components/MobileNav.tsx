@@ -14,6 +14,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 const links = [
   { name: "home", path: "/" },
@@ -25,14 +26,18 @@ const links = [
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
   return (
-    <Sheet>
-      <SheetTrigger className="flex justify-center items-center">
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger
+        className="flex justify-center items-center"
+        onClick={() => setOpen(true)}
+      >
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
 
       <SheetContent className="flex flex-col">
-        {/* For screen readers */}
         <VisuallyHidden>
           <SheetHeader>
             <SheetTitle>
@@ -44,7 +49,7 @@ const MobileNav = () => {
           </SheetHeader>
         </VisuallyHidden>
 
-        <Link href="/">
+        <Link href="/" onClick={() => setOpen(false)}>
           <Image
             src="/icons/logo.png"
             height={80}
@@ -59,6 +64,7 @@ const MobileNav = () => {
             <Link
               key={index}
               href={link.path}
+              onClick={() => setOpen(false)}
               className={`${
                 pathname === link.path && "text-accent border-b-2 border-accent"
               } text-xl capitalize hover:text-accent transition-all`}
