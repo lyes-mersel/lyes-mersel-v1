@@ -47,7 +47,6 @@ import { TbBrandFramerMotion } from "react-icons/tb";
 import Image from "next/image";
 import { useState } from "react";
 import { calculateYearDifference } from "@/lib/utils";
-import { comma } from "postcss/lib/list";
 
 // education data
 const education = {
