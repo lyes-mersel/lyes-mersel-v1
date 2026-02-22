@@ -90,7 +90,7 @@ const experience = {
     // },
     {
       company: "Futurelec - Bejaia",
-      position: "Software Engineer Intern ",
+      position: "Software Engineer Intern",
       duration: "02/2026 - 05/2026",
       employmentType: "Full-time",
       workArrangement: "Hybrid",
