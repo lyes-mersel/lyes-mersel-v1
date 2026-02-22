@@ -319,7 +319,7 @@ const Resume = () => {
                             {item.employmentType}, {item.workArrangement}
                           </span>
                         </div>
-                        <h3 className="flex justify-center items-center text-xl max-w-[260px] min-h-[60px] lg:text-left leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
+                        <h3 className="flex items-center text-xl max-w-[260px] min-h-[60px] leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
                           {item.position}
                         </h3>
                         <div className="flex items-center gap-3 mt-2">
