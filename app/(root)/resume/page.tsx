@@ -83,20 +83,38 @@ const experience = {
   title: "My Experience",
   description: "Here's a quick overview of my professional journey:",
   items: [
+    // {
+    //   company: "Freelance",
+    //   position: "Full Stack Developer",
+    //   duration: "08/2024 - Current",
+    // },
     {
-      company: "Freelance",
-      position: "Full Stack Developer",
-      duration: "08/2024 - Current",
+      company: "Futurelec - Bejaia",
+      position: "Software Engineer Intern",
+      duration: "02/2026 - 05/2026",
+      employmentType: "Full-time",
+      workArrangement: "Hybrid",
+    },
+    {
+      company: "Futurelec - Bejaia",
+      position: "Frontend Developer",
+      duration: "08/2025 - 11/2025",
+      employmentType: "Part-time",
+      workArrangement: "Remote",
     },
     {
       company: "Eastern Al-Maha - Kuwait",
       position: " Software Engineer Intern – Backend",
       duration: "06/2025 - 08/2025",
+      employmentType: "Full-time",
+      workArrangement: "Remote",
     },
     {
       company: "Cevital - Bejaia",
       position: "Information System Intern",
       duration: "07/2024 - 08/2024",
+      employmentType: "Full-time",
+      workArrangement: "On-site",
     },
   ],
 };
@@ -295,8 +313,13 @@ const Resume = () => {
                         key={index}
                         className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
                       >
-                        <span className="text-accent">{item.duration}</span>
-                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
+                        <div>
+                          <span className="text-accent block h-6">{item.duration}</span>
+                          <span className="text-accent">
+                            {item.employmentType}, {item.workArrangement}
+                          </span>
+                        </div>
+                        <h3 className="flex items-center text-xl max-w-[260px] min-h-[60px] leading-none xs:leading-normal xl:leading-none xxl:leading-normal">
                           {item.position}
                         </h3>
                         <div className="flex items-center gap-3 mt-2">
