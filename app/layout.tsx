@@ -1,16 +1,16 @@
-import { Analytics } from "@vercel/analytics/next";
-import { JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import { Analytics } from '@vercel/analytics/next';
+import { JetBrains_Mono } from 'next/font/google';
+import './globals.css';
 
 // components
-import Header from "@/components/Header";
+import Header from '@/components/navigation/Header';
 
 // utils
-import { createMetadata } from "@/lib/utils";
+import { createMetadata } from '@/lib/utils';
 
 const jetBrains_Mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetBrainsMono",
+  subsets: ['latin'],
+  variable: '--font-jetBrainsMono',
   preload: false,
 });
 

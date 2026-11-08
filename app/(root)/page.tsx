@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { FiDownload } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { Button } from '@/components/ui/button';
+import { FiDownload } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 
 // components
-import Socials from "@/components/Socials";
-import Photo from "@/components/Photo";
-import Stats from "@/components/Stats";
+import Socials from '@/app/(root)/_components/Socials';
+import Photo from '@/app/(root)/_components/Photo';
+import Stats from '@/app/(root)/_components/Stats';
 
 const Home = () => {
   return (
@@ -17,41 +17,38 @@ const Home = () => {
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
-            transition: { delay: 2, duration: 0.4, ease: "easeIn" },
+            transition: { delay: 2, duration: 0.4, ease: 'easeIn' },
           }}
           className="flex flex-col xl:flex-row justify-between items-center xl:py-8 xxl:pb-10 xxxl:pb-20"
         >
           {/* Text */}
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl">Software Developer</span>
-            <h1 className="mb-6">
+            <span className="text-xl">Software Engineer</span>
+            <h1 className="mt-2 lg:mt-4 mb-8 lg:mb-12">
               Hello I&apos;m <br />
               <span className="text-accent">Lyes Mersel</span>
             </h1>
-            <p className="text-justify max-w-[520px] mb-9 text-white/80">
-              Helping businesses and individuals bring their visions to life.
-              From sleek websites to custom apps, I craft digital solutions with
-              precision and creativity.
+            <p className="text-justify max-w-[520px] text-white/80">
+              Helping businesses and individuals bring their visions to life. From sleek websites to
+              custom apps, I craft digital solutions with precision and creativity.
             </p>
             {/* donwload CV && social links */}
-            <div className="flex flex-col xl:flex-row gap items-center gap-8">
+            <div className="my-8 lg:my-16 flex flex-col xl:flex-row gap items-center gap-8">
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="uppercase flex items-center gap-2"
+                className="flex items-center gap-3 font-jetBrainsMono text-md font-bold bg-primary hover:bg-accent text-accent hover:text-primary border-accent rounded-xl transition-all duration-500"
               >
                 <a href="/files/CV - Lyes Mersel.pdf" download>
                   Download CV
                   <FiDownload className="text-xl" />
                 </a>
               </Button>
-              <div className="mb-8 xl:mb-0">
-                <Socials
-                  containerStyles="flex gap-6"
-                  iconStyles="h-9 w-9 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
-                />
-              </div>
+              <Socials
+                containerStyles="flex gap-6"
+                iconStyles="h-9 w-9 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
+              />
             </div>
           </div>
 

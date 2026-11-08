@@ -1,43 +1,43 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkedAlt } from "react-icons/fa";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkedAlt } from 'react-icons/fa';
 
 const info = [
   {
     icon: <FaPhoneAlt />,
-    title: "Phone",
-    description: "(+213) 783 31 05 46",
+    title: 'Phone',
+    description: '(+213) 783 31 05 46',
   },
   {
     icon: <FaEnvelope />,
-    title: "Email",
-    description: "dev.mersel@gmail.com",
+    title: 'Email',
+    description: 'dev.mersel@gmail.com',
   },
   {
     icon: <FaMapMarkedAlt />,
-    title: "Address",
-    description: "Bejaia, Algeria",
+    title: 'Address',
+    description: 'Bejaia, Algeria',
   },
 ];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{ ok: number; message: string }>({
     ok: 0,
-    message: "",
+    message: '',
   });
   const [errors, setErrors] = useState({
     firstName: false,
@@ -60,9 +60,7 @@ const Contact = () => {
   };
 
   // handle form input change
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (errors[e.target.name as keyof typeof errors]) {
       setErrors({ ...errors, [e.target.name]: false });
@@ -74,18 +72,18 @@ const Contact = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      setStatus({ ok: 400, message: "Please fill all the required fields" });
+      setStatus({ ok: 400, message: 'Please fill all the required fields' });
       return;
     }
 
     setIsSubmitting(true);
-    setStatus({ ok: 0, message: "" });
+    setStatus({ ok: 0, message: '' });
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
+      const response = await fetch('/api/contact', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -94,19 +92,19 @@ const Contact = () => {
       if (response.ok) {
         setStatus({ ok: response?.status, message: result?.message });
         setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
         });
       } else {
         setStatus({ ok: response?.status, message: result?.error });
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      setStatus({ ok: 400, message: "Error sending message." });
+      console.error('Error sending message:', error);
+      setStatus({ ok: 400, message: 'Error sending message.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -117,7 +115,7 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
+        transition: { delay: 2.4, duration: 0.4, ease: 'easeIn' },
       }}
       className="py-6"
     >
@@ -129,13 +127,10 @@ const Contact = () => {
               className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
               onSubmit={handleSubmit}
             >
-              <h3 className="w-full text-4xl text-accent">
-                Let’s Create Something Great Together
-              </h3>
+              <h3 className="w-full text-4xl text-accent">Let’s Create Something Great Together</h3>
               <p className="text-white/60 text-left xs:text-justify">
-                Have a project in mind or need help turning your ideas into
-                reality? I’m here to collaborate and bring your vision to life.
-                Reach out, and let’s get started!
+                Have a project in mind or need help turning your ideas into reality? I’m here to
+                collaborate and bring your vision to life. Reach out, and let’s get started!
               </p>
               {/* inputs */}
               <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -145,7 +140,7 @@ const Contact = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="First Name"
-                  className={`${errors.firstName && "border-error"}`}
+                  className={`${errors.firstName && 'border-error'}`}
                 />
                 <Input
                   type="text"
@@ -160,7 +155,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email Address"
-                  className={`${errors.email && "border-error"}`}
+                  className={`${errors.email && 'border-error'}`}
                 />
                 <Input
                   type="text"
@@ -175,9 +170,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="The Subject"
-                  className={`md:col-span-2 ${
-                    errors.subject && "border-error"
-                  }`}
+                  className={`md:col-span-2 ${errors.subject && 'border-error'}`}
                 />
               </div>
               {/* textarea */}
@@ -186,16 +179,12 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Tap your message here"
-                className={`h-[200px] ${errors.message && "border-error"}`}
+                className={`h-[200px] ${errors.message && 'border-error'}`}
               />
               {/* Submit Btn & message */}
               <div className="flex flex-col sm:flex-row justify-between items-center">
                 {status.ok !== 0 ? (
-                  <p
-                    className={`mb-4 sm:mb-0 ${
-                      status.ok === 200 ? "text-accent" : "text-error"
-                    }`}
-                  >
+                  <p className={`mb-4 sm:mb-0 ${status.ok === 200 ? 'text-accent' : 'text-error'}`}>
                     {status.message}
                   </p>
                 ) : (
@@ -204,10 +193,10 @@ const Contact = () => {
                 <Button
                   type="submit"
                   size="sm"
-                  className="max-w-40"
+                  className="p-5 rounded-2xl text-md font-bold bg-accent text-primary hover:bg-accent/80 hover:text-primary/90 transition-all duration-500"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending..." : "Send message"}
+                  {isSubmitting ? 'Sending...' : 'Send message'}
                 </Button>
               </div>
             </form>

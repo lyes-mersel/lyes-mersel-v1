@@ -1,48 +1,54 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
-/** create Metadata for pages */
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://lyes-mersel.vercel.app';
+
+const DEFAULT_TITLE = 'Lyes Mersel | Software Engineer Portfolio';
+
+const DEFAULT_DESCRIPTION =
+  'Software Engineer and Full-Stack Developer building modern web applications for businesses and individuals. Explore my projects, technical skills, and experience.';
+
+const DEFAULT_KEYWORDS = [
+  'Lyes Mersel',
+  'Software Engineer',
+  'Full-Stack Developer',
+  'Full-Stack Web Developer',
+  'Web Developer',
+  'Frontend Developer',
+  'Backend Developer',
+  'Freelance Developer',
+  'Web Application Development',
+  'Custom Software Development',
+  'React',
+  'Next.js',
+  'TypeScript',
+  'JavaScript',
+  'Node.js',
+  'NestJS',
+  'PostgreSQL',
+  'Software Projects',
+  'Developer Portfolio',
+];
+
+/** Create metadata for a page. */
 export const createMetadata = (
-  title: string = "Lyes Mersel - Software Developer Portfolio",
-  path: string = "/",
-  description: string = "Welcome to my portfolio! I'm a software developer specializing in web development, software engineering, and tech innovations. Explore my projects and achievements.",
-  keywords: string[] = [
-    "Lyes Mersel",
-    "Software Developer",
-    "Web Developer",
-    "Portfolio",
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Frontend",
-    "Backend",
-    "Fullstack",
-    "Projects",
-    "Tech",
-    "Engineering",
-    "Open Source",
-    "Resume",
-    "Contact",
-    "Services",
-    "Work",
-    "Blog",
-    "JavaScript",
-    "Node.js",
-    "NestJs",
-    "SQL",
-  ]
+  title: string = DEFAULT_TITLE,
+  path: string = '/',
+  description: string = DEFAULT_DESCRIPTION,
+  keywords: string[] = DEFAULT_KEYWORDS,
 ): Metadata => ({
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://lyes-mersel.vercel.app"
-  ),
+  metadataBase: new URL(SITE_URL),
+
   title,
   description,
   keywords,
+
   authors: [
     {
-      name: "Lyes Mersel",
-      url: process.env.NEXT_PUBLIC_BASE_URL || "https://lyes-mersel.vercel.app",
+      name: 'Lyes Mersel',
+      url: SITE_URL,
     },
   ],
+
   robots: {
     index: true,
     follow: true,
@@ -51,43 +57,37 @@ export const createMetadata = (
       index: true,
       follow: true,
       noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
+
   alternates: {
-    canonical:
-      (process.env.NEXT_PUBLIC_BASE_URL || "https://lyes-mersel.vercel.app") +
-      path,
-    languages: {
-      "en-US": "/en-US", // Add more languages if available
-    },
+    canonical: path,
   },
+
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-icon.png",
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
+
   openGraph: {
     title,
     description,
-    url: `${
-      process.env.NEXT_PUBLIC_BASE_URL || "https://lyes-mersel.vercel.app"
-    }${path}`,
-    siteName: "Lyes Mersel Portfolio",
+    url: path,
+    siteName: 'Lyes Mersel Portfolio',
     images: [
       {
-        // This image is generated dynamically by the /api/og endpoint
-        url:
-          (process.env.NEXT_PUBLIC_BASE_URL ||
-            "https://lyes-mersel.vercel.app") + "/api/og",
+        // Generated dynamically by the /api/og endpoint.
+        url: '/api/og',
         width: 1200,
         height: 630,
         alt: title,
       },
     ],
-    locale: "en_US",
-    type: "website",
+    locale: 'en_US',
+    type: 'website',
   },
 });

@@ -1,9 +1,7 @@
-import PageTransitioin from "@/components/PageTransitioin";
-import StairTransition from "@/components/StairTransition";
+import PageTransitioin from '@/components/transition/PageTransitioin';
+import StairTransition from '@/components/transition/StairTransition';
 
-export default function Layout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <main>
       <StairTransition />
