@@ -7,7 +7,7 @@ export const futurelecERP: Project = {
   kind: "Master's final-year project (Internship)",
   featured: true,
   year: '2026',
-  role: 'Software Engineer Intern · Team of 1',
+  role: 'Software Engineer Intern',
   description:
     'A modular business management platform for inventory, purchasing, sales, and commercial operations, with an integrated demand forecasting component.',
 

@@ -6,7 +6,7 @@ export const polynomialMaster: Project = {
   category: 'Desktop',
   kind: 'Academic project',
   year: '2020',
-  role: 'First-year university project · Team of 1',
+  role: 'First-year university project',
   description:
     'A C-based desktop application for polynomial manipulation, combining linked-list data structures, mathematical operations, and graphical visualization with SDL2.',
 

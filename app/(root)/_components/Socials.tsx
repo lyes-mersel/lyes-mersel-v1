@@ -1,21 +1,11 @@
 import Link from 'next/link';
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-  // FaHackerrank,
-} from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const links = [
   { name: <FaLinkedin />, path: 'https://www.linkedin.com/in/lyes-mersel' },
   { name: <FaGithub />, path: 'https://github.com/lyes-mersel' },
   { name: <FaTwitter />, path: 'https://x.com/lyes_mersel' },
-  { name: <FaInstagram />, path: 'https://www.instagram.com/lyes_mersel' },
-  // {
-  //   name: <FaHackerrank />,
-  //   path: "https://www.hackerrank.com/profile/lyes_mersel",
-  // },
+  { name: <FaInstagram />, path: 'https://www.instagram.com/the.silent.coder' },
 ];
 
 const Socials = ({
