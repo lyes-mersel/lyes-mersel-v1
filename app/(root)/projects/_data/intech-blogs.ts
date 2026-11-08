@@ -6,7 +6,7 @@ export const inTechBlogs: Project = {
   category: 'Web',
   kind: 'Personal project',
   year: '2024',
-  role: 'Full-Stack Developer · Team of 1',
+  role: 'Full-Stack Developer',
   description:
     'A modern blogging platform where tech enthusiasts can publish and explore articles about software development, AI, cybersecurity, and other technology topics.',
 

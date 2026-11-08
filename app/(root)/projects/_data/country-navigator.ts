@@ -6,7 +6,7 @@ export const countryNavigator: Project = {
   category: 'Web',
   kind: 'Frontend Mentor challenge',
   year: '2024',
-  role: 'Front-End Developer · Team of 1',
+  role: 'Front-End Developer',
   description:
     'A responsive country exploration application that lets users discover countries worldwide, filter results, and access detailed information through the REST Countries API.',
 
